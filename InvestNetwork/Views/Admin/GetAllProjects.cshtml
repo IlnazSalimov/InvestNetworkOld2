@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Все проекты";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="content_fullwidth">
+    <div id="Grid" style="height: 500px"></div>
+</div>
+
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
+<script src="~/Scripts/accounting.min.js"></script>
+
+<script>
+    (function () {
+        $("#Grid").kendoGrid({
+            columns: [
+                { field: "Name", title: "Название проекта", width: "150px", template: "<a href='/Admin/ReviewProject/${ProjectID}'>${Name}</a>" },
+                { field: "Status", title: "Статус", width: "80px" },
+                {
+                    field: "NecessaryFunding", title: "Финансирование", width: "80px",
+                    template: function (dataItem) {
+                        return accounting.formatMoney(dataItem.NecessaryFunding, { symbol: "руб.", format: "%v %s", precision: 0 });
+                    }
+                },
+                {
+                    field: "IsInspected", title: "Осмотр", width: "100px",
+                    template: function (dataItem) {
+                        return dataItem.IsInspected ? "Осмотрен" : "Не осмотрен";
+                    }
+                },
+            ],
+            pageable: true,
+            pageSize: 5,
+            sortable: true,
+            filterable: true,
+            editable: "popup",
+            //toolbar: ["create"],
+            dataSource: {
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 15,
+                type: "odata",
+                schema: {
+                    data: function (response) {
+                        console.log(response);
+                        if (response.value !== undefined)
+                            return response.value;
+                        else {
+                            delete response["odata.metadata"];
+                            return response;
+                        }
+                    },
+                    total: function (response) {
+                        return response['odata.count'];
+                    },
+                    /*model: {
+                        id: "ProjectID",
+                        fields: {
+                            ProjectID: { editable: false, type: "number" },
+                            Name: { type: "string", nullable: false },
+                            Status: { nullable: false, type: "string" },
+                            NecessaryFunding: { type: "number", validation: { required: true }, editable: true },
+                        }
+                    },*/
+                },
+                batch: false,
+                error: error,
+                transport: {
+                    create: {
+                        url: "/odata/Project",
+                        contentType: "application/json",
+                        type: "POST",
+                    },
+                    read: {
+                        url: "/odata/Project",
+                        dataType: "json",
+                        contentType: "application/json",
+
+                    },
+                    update: {
+                        url: function (record) {
+                            return "/odata/Project" + "(" + record.ProjectID + ")";
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT",
+                        headers: { Prefer: "return-content" }
+                    },
+                    destroy: {
+                        url: function (record) {
+                            return "/odata/Project" + "(" + record.ProjectID + ")";
+                        },
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                    parametermap: function (data, operation) {
+                        console.log(data);
+                        if (operation === "read") {
+                            var parammap = kendo.data.transports.odata.parametermap(data);
+                            return parammap;
+                        }
+                        return json.stringify(data);
+                    }
+                }
+            }
+        });
+    })();
+
+    function categoryDropDownEditor(container, options) {
+        $('<input data-bind="value:CategoryID"/>')
+            .appendTo(container)
+            .kendoDropDownList({
+                dataTextField: "Name",
+                dataValueField: "ID",
+                optionLabel: "--Select Value--",
+                dataSource: {
+                    schema: {
+                        data: "value",
+                        total: function (response) {
+                            return response['odata.count'];
+                        },
+                        model: {
+                            id: "ID",
+                            fields: {
+                                ID: { editable: false, type: "number" },
+                                Name: { type: "string", nullable: false },
+
+                            }
+                        },
+                    },
+                    type: "odata",
+                    serverFiltering: true,
+                    serverPaging: true,
+                    pageSize: 20,
+                    transport: {
+                        read: {
+                            url: "/odata/Categories",
+                            dataType: "json",
+                            contentType: "application/json"
+                        }
+                    },
+                    parametermap: function (data, operation) {
+                        if (operation === "read") {
+                            var parammap = kendo.data.transports.odata.parametermap(data);
+                            return parammap;
+                        }
+                        return json.stringify(data);
+                    }
+                },
+
+            });
+    }
+
+    function error(e) {
+        if (e.errorThrown === "Bad Request") {
+            var response = JSON.parse(e.xhr.responseText);
+            console.log(response);
+            if (response['odata.error'] != undefined) {
+                alert(response['odata.error'].message.value)
+            }
+        }
+        else {
+            alert(e.status + ": " + e.errorThrown)
+        }
+    };
+
+    function formatCurrency(num) {
+        num = num.toString().replace(/\$|\,/g, '');
+        if (isNaN(num))
+            num = '0';
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001);
+        cents = num % 100;
+        num = Math.floor(num / 100).toString();
+        if (cents < 10)
+            cents = '0' + cents;
+        for (i = 0; i < Math.floor((num.length - (1 + i)) / 3) ; i++) {
+            num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+        }
+        return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+    }
+</script>
+
+@section Scripts{
+}

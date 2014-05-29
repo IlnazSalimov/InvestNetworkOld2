@@ -1,0 +1,68 @@
+﻿@model InvestNetwork.Core.LoginUser
+
+@{
+    ViewBag.Title = "Вход";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>Вход</h1>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="container">
+    <div class="content_left">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <div class="accrodation">
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Email)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(model => model.Email)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Password)</div>
+                        <div class="join_element">
+                            @Html.PasswordFor(model => model.Password)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.RememberMe)</div>
+                        <div class="join_element">
+                            @Html.CheckBoxFor(model => model.RememberMe)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <input type="submit" value="Войти" />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="join_row">
+                <a href="SignUp">Регистрация</a>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+@section Scripts{
+
+}

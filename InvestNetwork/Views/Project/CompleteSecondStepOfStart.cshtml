@@ -1,0 +1,90 @@
+﻿@model InvestNetwork.Core.ProjectStartingSecondStep
+
+@{
+    ViewBag.Title = "Создание проекта";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+    <div class="one_full">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(false)
+            <fieldset>
+                <div class="accrodation">
+                    <h2>Осталось совсем <strong>немного</strong></h2>
+
+                    <div class="punchline_text_box">
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.LinkToImg)</strong></div>
+                            <div class="join_element">
+                                <input id="ProjectImg" type="file" name="ProjectImg" />
+                            </div>
+                        </div>
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.Description)</strong></div>
+                            <div class="join_element">
+                                @Html.TextAreaFor(model => model.Description)
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(model => model.ProjectFilesDirectory)
+                        @Html.HiddenFor(model => model.ProjectID)
+                    </div>
+
+                    <div class="clearfix mar_top3"></div>
+
+                    <div class="join_row">
+                        <input type="submit" value="Создать" />
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+<!-- Script Section -->
+
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
+<script>
+    (function () {
+        $("#ProjectImg").kendoUpload({ multiple: false });
+
+        $("#Description").kendoEditor({
+            imageBrowser: {
+                transport: {
+                    read: "@Url.Action("Read", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    destroy: {
+                        url: "@Url.Action("Destroy", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "@Url.Action("Create", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "@Url.Action("Thumbnail", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    uploadUrl: "@Url.Action("Upload", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    imageUrl: "/ImageBrowser/Image?path={0}&rootDirectory=" + "@Model.ProjectFilesDirectory"
+                }
+            }
+        });
+    })();
+</script>

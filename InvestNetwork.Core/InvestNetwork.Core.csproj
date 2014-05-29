@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1984153-4010-4769-96FB-8F50C65BC73C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InvestNetwork.Core</RootNamespace>
+    <AssemblyName>InvestNetwork.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.2.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC4.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="AutoMapper\IMapper.cs" />
+    <Compile Include="AutoMapper\Mapper.cs" />
+    <Compile Include="ErrorLogging\CustomHandleError.cs" />
+    <Compile Include="ErrorLogging\CustomWebRequestErrorEvent.cs" />
+    <Compile Include="FileUploader\DirectoryBrowser.cs" />
+    <Compile Include="FileUploader\EntryType.cs" />
+    <Compile Include="FileUploader\FileBrowserEntry.cs" />
+    <Compile Include="FileUploader\FileUploader.cs" />
+    <Compile Include="FileUploader\ImageResizer.cs" />
+    <Compile Include="FileUploader\ImageSize.cs" />
+    <Compile Include="FileUploader\ThumbnailCreator.cs" />
+    <Compile Include="ImageTools\GarageTools.cs" />
+    <Compile Include="InvestContext\CustomAuthentication.cs" />
+    <Compile Include="InvestContext\HttpModules\AuthHttpModule.cs" />
+    <Compile Include="InvestContext\Interfaces\IAuthentication.cs" />
+    <Compile Include="InvestContext\Interfaces\IInvestContext.cs" />
+    <Compile Include="InvestContext\Interfaces\IUserProvider.cs" />
+    <Compile Include="InvestContext\InvestContext.cs" />
+    <Compile Include="InvestContext\UserIdentity.cs" />
+    <Compile Include="InvestContext\UserProvider.cs" />
+    <Compile Include="Models\City.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTO\CityDto.cs" />
+    <Compile Include="Models\DTO\CountryDto.cs" />
+    <Compile Include="Models\DTO\ProjectDto.cs" />
+    <Compile Include="Models\DTO\RegionDto.cs" />
+    <Compile Include="Models\DTO\ScopeDto.cs" />
+    <Compile Include="Models\DTO\UsersInfoDto.cs" />
+    <Compile Include="Models\Entity\Entity.cs" />
+    <Compile Include="Models\Entity\IEntity.cs" />
+    <Compile Include="Models\IDataContext.cs" />
+    <Compile Include="Models\InvestEntityDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvestEntityDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvestEntityDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvestEntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvestEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Message.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MetaData\LoginUserMetaData.cs" />
+    <Compile Include="Models\MetaData\PartycipationUsersInfoMetaData.cs" />
+    <Compile Include="Models\MetaData\ProjectMetaData.cs" />
+    <Compile Include="Models\MetaData\ProjectNewMetaData.cs" />
+    <Compile Include="Models\MetaData\SignupUserMetaData.cs" />
+    <Compile Include="Models\MetaData\UserMetaData.cs" />
+    <Compile Include="Models\MetaData\UserSettingsMetaData.cs" />
+    <Compile Include="Models\MetaData\UsersInfoMetaData.cs" />
+    <Compile Include="Models\Partials\City.cs" />
+    <Compile Include="Models\Partials\Country.cs" />
+    <Compile Include="Models\Partials\InvestNetworkEntities.cs" />
+    <Compile Include="Models\Partials\Message.cs" />
+    <Compile Include="Models\Partials\PartycipationUsersInfo.cs" />
+    <Compile Include="Models\Partials\Payment.cs" />
+    <Compile Include="Models\Partials\PaymentStatus.cs" />
+    <Compile Include="Models\Partials\Project.cs" />
+    <Compile Include="Models\Partials\ProjectComment.cs" />
+    <Compile Include="Models\Partials\ProjectNew.cs" />
+    <Compile Include="Models\Partials\ProjectNewsComment.cs" />
+    <Compile Include="Models\Partials\ProjectStatus.cs" />
+    <Compile Include="Models\Partials\Region.cs" />
+    <Compile Include="Models\Partials\Role.cs" />
+    <Compile Include="Models\Partials\Scope.cs" />
+    <Compile Include="Models\Partials\User.cs" />
+    <Compile Include="Models\Partials\UsersInfo.cs" />
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentStatus.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectComment.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectNew.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectNewsComment.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectStatus.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Scope.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Showcases\Message\MessageSending.cs" />
+    <Compile Include="Models\Showcases\Project\ProjectCommentSending.cs" />
+    <Compile Include="Models\Showcases\Project\ProjectStart.cs" />
+    <Compile Include="Models\Showcases\Project\ProjectStartingSecondStep.cs" />
+    <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />
+    <Compile Include="Models\Showcases\Users\LoginUser.cs" />
+    <Compile Include="Models\Showcases\Users\SignupUser.cs" />
+    <Compile Include="Models\Showcases\Users\UserProfile.cs" />
+    <Compile Include="Models\Showcases\Users\UserSettings.cs" />
+    <Compile Include="Models\User.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersInfo.cs">
+      <DependentUpon>InvestEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NinjectCustom\CustomDependencyResolver.cs" />
+    <Compile Include="NinjectCustom\DependencyConfigure.cs" />
+    <Compile Include="NinjectCustom\NinjectWebApiResolver.cs" />
+    <Compile Include="NinjectCustom\NinjectWebApiScope.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Implementations\CityRepository.cs" />
+    <Compile Include="Repository\Implementations\CountryRepository.cs" />
+    <Compile Include="Repository\Implementations\MessageRepository.cs" />
+    <Compile Include="Repository\Implementations\ProjectCommentRepository.cs" />
+    <Compile Include="Repository\Implementations\ProjectNewsCommentsRepository.cs" />
+    <Compile Include="Repository\Implementations\ProjectNewsRepository.cs" />
+    <Compile Include="Repository\Implementations\ProjectRepository.cs" />
+    <Compile Include="Repository\Implementations\ProjectStatusRepository.cs" />
+    <Compile Include="Repository\Implementations\RegionRepository.cs" />
+    <Compile Include="Repository\Implementations\Repository.cs" />
+    <Compile Include="Repository\Implementations\RoleRepository.cs" />
+    <Compile Include="Repository\Implementations\ScopeRepository.cs" />
+    <Compile Include="Repository\Implementations\UserRepository.cs" />
+    <Compile Include="Repository\Implementations\UsersInfoRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICityRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICountryRepository.cs" />
+    <Compile Include="Repository\Interfaces\IMessageRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectCommentRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectNewsCommentsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectNewsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectStatusRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRegionRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repository\Interfaces\IScopeRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUsersInfoRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="App_Code\Content.cshtml" />
+    <EntityDeploy Include="Models\InvestEntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>InvestEntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\InvestEntityDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvestEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>InvestEntityDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\InvestEntityDataModel.edmx.diagram">
+      <DependentUpon>InvestEntityDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="Models\InvestEntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InvestEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>InvestEntityDataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Views\Shared\_LayoutExtended.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,420 @@
+﻿@using InvestNetwork.Application.Core;
+
+@model InvestNetwork.Core.Project
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+}
+
+@section Header {
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@Model.Name</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+
+
+    <div id="tabs">
+        <ul class="tabs">
+            <li class="active"><a href="#tab1">О проекте</a></li>
+            <li class=""><a href="#tab2">Новости</a></li>
+            <li class=""><a href="#tab3">Комментарии</a></li>
+        </ul>
+        <!-- /# end tab links -->
+        <div class="tab-container">
+            <div id="tab1" class="tab-content" style="display: block;">
+                <div class="portfolio_area" style="margin-bottom:20px">
+
+                    <div class="portfolio_area_left">
+                        @Html.ProjectImage(Model.ID)
+                        <div class="mar_top3"></div>
+                        <h2>О проекте</h2>
+                        <div class="divider_line8"></div>
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+                    </div>
+
+                    <div class="portfolio_area_right">
+                        <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i>В избранное</strong></a>
+
+                        <div class="project_details custom">
+                            <h3>Детали проекта</h3>
+                            <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                            <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.Value.ToString("C0")</em></span>
+                            <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
+                            <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
+                            <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
+                            <div class="clearfix mar_top3"></div>
+
+                        </div>
+                        <a href="@Url.Action("DetermineAmount", "Funding", new { Id = Model.ID })" class="but_goback"><i class="icon-hand-right icon-large"></i>Инвестировать</a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab2" class="tab-content" style="display: none;">
+                <h2>Новости</h2>
+                <div class="content_left">
+
+                    @{
+                        if (ViewBag.user != null && ViewBag.user.Id == Model.AuthorID)
+                        {
+                            Html.ValidationSummary(false);
+                            var projectNews = new InvestNetwork.Core.ProjectNew();
+                            <div class="accrodation">
+                                <div class="punchline_text_box">
+
+                                    <div class="join_row">
+                                        <div class="join_label"><strong>@Html.LabelFor(model => projectNews.NewsTittle)</strong></div>
+                                        <div class="join_element">
+                                            @Html.EditorFor(model => projectNews.NewsTittle)
+                                        </div>
+                                    </div>
+
+                                    <div class="join_row">
+                                        <div class="join_label"><strong>@Html.LabelFor(model => projectNews.Description)</strong></div>
+                                        <div class="join_element">
+                                            @Html.TextAreaFor(model => projectNews.Description)
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(model => model.ProjectFilesDirectory)
+                                    @Html.HiddenFor(model => model.ProjectID)
+
+                                    <div class="join_row">
+                                        <input type="button" value="Добавить" id="send_projectNew">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <script>
+                        var baseUrl = '@Url.Content("~/")';
+                        (function () {
+                            $("#send_projectNew").bind("click", function () {
+
+                                var newsVal = $("#projectNews_Description").val();
+                                var tittle = $("#projectNews_NewsTittle").val();
+                                var newsLen = newsVal.length;
+                                // Проверка длины
+                                if (newsLen < 1 || tittle.length < 0) {
+                                    return;
+                                }
+                                $.ajax({
+                                    type: 'POST',
+                                    url: baseUrl + 'Api/ProjectNews/Send',
+                                    data: {
+                                        NewsTittle: tittle,
+                                        Description: newsVal,
+                                        ProjectID: '@Model.ProjectID'
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data) {
+                                            var newsDay = new Date(data.NewsDate).getDate();
+                                            var month = new Date(data.NewsDate).getMonth() + 1;
+                                            var dat = new Date();
+                                            var id = dat.getMinutes().toString() + dat.getMilliseconds().toString();
+                                            $("#projectNews_Description").val(null);
+                                            var newsMonth;
+                                            switch (month) {
+                                                case 1:
+                                                    newsMonth = 'Январь';
+                                                    break;
+                                                case 2:
+                                                    newsMonth = 'Февраль';
+                                                    break;
+                                                case 3:
+                                                    newsMonth = 'Март';
+                                                    break;
+                                                case 4:
+                                                    newsMonth = 'Апрель';
+                                                    break;
+                                                case 5:
+                                                    newsMonth = 'Май';
+                                                    break;
+                                                case 6:
+                                                    newsMonth = 'Июнь';
+                                                    break;
+                                                case 7:
+                                                    newsMonth = 'Июль';
+                                                    break;
+                                                case 8:
+                                                    newsMonth = 'Август';
+                                                    break;
+                                                case 9:
+                                                    newsMonth = 'Сентябрь';
+                                                    break;
+                                                case 10:
+                                                    newsMonth = 'Октябрь';
+                                                    break;
+                                                case 11:
+                                                    newsMonth = 'Ноябрь';
+                                                    break;
+                                                case 12:
+                                                    newsMonth = 'Декабрь';
+                                                    break;
+                                            }
+                                            $("#after_news").after(
+                                                "<div class='blog_postcontent'>" +
+                                                "    <a class='date'><strong>" + newsDay + "</strong><i>" + newsMonth + "</i></a>" +
+                                                "    <h3>" + data.NewsTittle + "</h3>" +
+                                                "    <div class='post_info_content'>" +
+                                                "       <div id='descr" + id + "'></div>" +
+                                                "    </div>" +
+                                                "</div>" +
+                                                "<div class='clearfix divider_line'></div>"
+                                                    );
+                                            var description = $('<div />').html(data.Description).text();
+                                            $("#descr" + id).after(description);
+                                        }
+                                    },
+                                    error: function () {
+                                    }
+                                });
+                            });
+                        })();
+                    </script>
+
+
+                    <div class="blog_post">
+                        <div id="after_news"></div>
+                        @foreach(InvestNetwork.Core.ProjectNew _new in ViewBag.projectNews)
+                        {
+                            <div class="blog_postcontent">
+                                <a class="date"><strong>@_new.NewsDate.Day</strong><i>@_new.NewsDate.ToString("MMMM")</i></a>
+                                <h3>@_new.NewsTittle</h3>
+                                <div class="post_info_content">
+                                    <p>@Html.Raw(HttpUtility.HtmlDecode(_new.Description))</p>
+                                </div>
+                                <!-- end section -->
+                            </div>
+                            <!-- комментарии к новости -->
+                            for (int i = 0; i < _new.ProjectNewsComments.Count; i++)
+                            {
+                                var comment = _new.ProjectNewsComments.ElementAtOrDefault(0);
+                                <div class="comment_wrap">
+                                    <div class="gravatar">
+                                        @Html.UserImage(comment.User.Id, true, 50, 50, new { @class = "teammempic" })
+                                    </div>
+                                    <div class="comment_content" style="min-height:0px">
+                                        <div class="comment_meta">
+                                            <div class="comment_author">@Html.UserLink(comment.User.Id) - <i>@comment.CommentDate.ToString("dd.MM.yyyy HH:mm:ss")</i></div>
+                                        </div>
+                                        <div class="comment_text">
+                                            <p>@comment.CommentText</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (ViewBag.user != null)
+                            {
+                                <div class="comment_form" style="margin-bottom:10px;">
+                                    <div id="before_news_comment" style="display:none"></div>
+                                    <h5>Добавить комментарий</h5>
+                        
+                                    <textarea id="news_comment" class="comment_textarea_bg" style="height:80px; width:450px"></textarea>
+                                    <div class="clearfix"></div>
+                                    <input type="button" id="send_news_comment" value="Отправить" class="news_comment_submit" data-news-id="@_new.ProjectNewsID">
+
+                                </div>
+                            }
+                            <div class="clearfix divider_line"></div>
+                        }
+                        <script>
+                            var baseUrl = '@Url.Content("~/")';
+                            (function () {
+                                $(".news_comment_submit").bind("click", function () {
+                                    debugger;
+                                    var msg = $(this).parent().find("#news_comment");
+                                    var msgval = msg.val();
+                                    var msglen = msgval.length;
+                                    // Проверка длины сообщения
+                                    if (msglen < 1) {
+                                        return;
+                                    }
+                                @{ 
+                                    var curUserID = ViewBag.user == null ? 0 : ViewBag.user.Id;
+                                    var curUserAvatar = ViewBag.user == null ? "" : ViewBag.user.Avatar;
+                                    var curUserName = ViewBag.user == null ? "" : ViewBag.user.FullName;
+                                }
+                                $.ajax({
+                                    type: 'POST',
+                                    url: baseUrl + 'Api/ProjectNewsComment/Send',
+                                    data: {
+                                        CommentText: msgval,
+                                        ProjectNewsID: $(this).attr("data-news-id"),
+                                        FromUserID: '@curUserID'
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data) {
+                                            msg.val(null);
+                                           $(msg).parent().find("#before_news_comment").before(
+                                                "<div class='comment_wrap'>" +
+                                                "    <div class='gravatar'>" +
+                                                "        <a href='/Profile/GetProfile/@curUserID'><img class='teammempic' src=@curUserAvatar@@50x50sc></a>" +
+                                                "   </div>" +
+                                                "   <div class='comment_content' style='min-height:0px'>" +
+                                                "       <div class='comment_meta'>" +
+                                                "           <div class='comment_author'><a href='/Profile/GetProfile/@curUserID'>@curUserName</a> - <i>" + data.CommentDate + "</i></div>" +
+                                                "       </div>" +
+                                                "       <div class='comment_text'>" +
+                                                "           <p>" + msgval + "</p>" +
+                                                "       </div>" +
+                                                "    </div>" +
+                                                "</div>"
+                                                );
+                                            }
+                                        },
+                                        error: function () {
+                                        }
+                                    });
+                                });
+                            })();
+                        </script>
+                    </div>
+                    <!-- /# end post -->
+
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab3" class="tab-content" style="display: none;">
+                <h2 style="margin-bottom:0px; margin-top:0px">Комментарии</h2>
+                <div class="content_left" style="padding:0px">
+                    @{
+                        if (ViewBag.user != null)
+                        {
+                            <div class="comment_form" style="margin-bottom:10px;">
+
+                                <h5>Добавить комментарий</h5>
+                        
+                                <textarea id="comment" class="comment_textarea_bg" style="height:100px; width:450px"></textarea>
+                                <div class="clearfix"></div>
+                                <input type="button" id="send_comment" value="Отправить" class="comment_submit">
+
+                            </div>
+                            <div class="clearfix divider_line10" style="margin:0px" id="after"></div>
+                        }
+                    }
+
+                    @{
+                        foreach (InvestNetwork.Core.ProjectComment comment in ViewBag.projectComments)
+                        {
+                            <div class="comment_wrap">
+                                <div class="gravatar">
+                                    @Html.UserImage(comment.User.Id, true, 50, 50, new { @class = "teammempic" })
+                                </div>
+                                <div class="comment_content" style="min-height:0px">
+                                    <div class="comment_meta">
+                                        <div class="comment_author">@Html.UserLink(comment.User.Id) - <i>@comment.CommentDate.ToString("dd.MM.yyyy HH:mm:ss")</i></div>
+                                    </div>
+                                    <div class="comment_text">
+                                        <p>@comment.CommentText</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <script>
+                        var baseUrl = '@Url.Content("~/")';
+                        (function () {
+                            $("#send_comment").bind("click", function () {
+                                debugger;
+                                var msgval = $("#comment").val();
+                                var msglen = msgval.length;
+                                // Проверка длины сообщения
+                                if (msglen < 1) {
+                                    return;
+                                }
+                                @{ 
+                                    curUserID = ViewBag.user == null ? 0 : ViewBag.user.Id;
+                                    curUserAvatar = ViewBag.user == null ? "" : ViewBag.user.Avatar;
+                                    curUserName = ViewBag.user == null ? "" : ViewBag.user.FullName;
+                                }
+                                $.ajax({
+                                    type: 'POST',
+                                    url: baseUrl + 'Api/ProjectComment/Send',
+                                    data: {
+                                        Comment: msgval,
+                                        ProjectID: '@Model.ProjectID',
+                                        FromUserID: '@curUserID'
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data) {
+                                            $("#comment").val(null);
+                                                $("#after").after(
+                                                    "<div class='comment_wrap'>" +
+                                                    "    <div class='gravatar'>" +
+                                                    "        <a href='/Profile/GetProfile/@curUserID'><img class='teammempic' src=@curUserAvatar@@50x50sc></a>" +
+                                                    "   </div>" +
+                                                    "   <div class='comment_content' style='min-height:0px'>" +
+                                                    "       <div class='comment_meta'>" +
+                                                    "           <div class='comment_author'><a href='/Profile/GetProfile/@curUserID'>@curUserName</a> - <i>" + data.CommentDate + "</i></div>" +
+                                                    "       </div>" +
+                                                    "       <div class='comment_text'>" +
+                                                    "           <p>" + msgval + "</p>" +
+                                                    "       </div>" +
+                                                    "    </div>" +
+                                                    "</div>"
+                                                    );
+                                            }
+                                        },
+                                        error: function () {
+                                        }
+                                    });
+                                });
+                            })();
+                    </script>
+                    
+                </div>
+            </div>
+            <!-- end tab single section -->
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
+<script>
+    (function () {
+        $("#projectNews_Description").kendoEditor({
+            imageBrowser: {
+                transport: {
+                    read: "@Url.Action("Read", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    destroy: {
+                        url: "@Url.Action("Destroy", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "@Url.Action("Create", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "@Url.Action("Thumbnail", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    uploadUrl: "@Url.Action("Upload", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    imageUrl: "/ImageBrowser/Image?path={0}&rootDirectory=" + "@Model.ProjectFilesDirectory"
+                }
+            }
+        });
+    })();
+</script>
+
+@section Scripts{}

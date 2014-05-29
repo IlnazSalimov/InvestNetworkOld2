@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InvestNetworkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ToUserID" Type="int" Nullable="false" />
+          <Property Name="MessageText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MessageDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatuses">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Name="PaymentStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectComments">
+          <Key>
+            <PropertyRef Name="ProjectCommentID" />
+          </Key>
+          <Property Name="ProjectCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectNews">
+          <Key>
+            <PropertyRef Name="ProjectNewsID" />
+          </Key>
+          <Property Name="ProjectNewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="NewsDate" Type="datetime" Nullable="false" />
+          <Property Name="NewsTittle" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectNewsComments">
+          <Key>
+            <PropertyRef Name="ProjectNewsCommentID" />
+          </Key>
+          <Property Name="ProjectNewsCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ProjectNewsID" Type="int" Nullable="false" />
+          <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="LocationCityID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ScopeID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LinkToBusinessPlan" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToFinancialPlan" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToVideoPresentation" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToGuaranteeLetter" Type="nvarchar" MaxLength="300" />
+          <Property Name="ProjectStatusID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LinkToImg" Type="nvarchar" MaxLength="300" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="NecessaryFunding" Type="money" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="135" />
+          <Property Name="FundingDuration" Type="int" />
+          <Property Name="IsInspected" Type="bit" Nullable="false" />
+          <Property Name="ProjectFilesDirectory" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectStatuses">
+          <Key>
+            <PropertyRef Name="ProjectStatusID" />
+          </Key>
+          <Property Name="ProjectStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scopes">
+          <Key>
+            <PropertyRef Name="ScopeID" />
+          </Key>
+          <Property Name="ScopeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="300" />
+          <Property Name="PostNotice" Type="bit" />
+          <Property Name="FilesBrowserDirectory" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersInfoID" />
+          </Key>
+          <Property Name="UsersInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Family" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Middle" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Citizenship" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasportSerie" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasportNumber" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasportIssueDate" Type="date" Nullable="false" />
+          <Property Name="PasportIssuedBy" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="AboutMyself" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Cities__RegionID__3B75D760">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Paymen__00200768">
+          <End Role="PaymentStatuses" Type="Self.PaymentStatuses" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatuses">
+              <PropertyRef Name="PaymentStatusID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Projec__7E37BEF6">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectCo__Proje__4F47C5E3">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectComments" Type="Self.ProjectComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectComments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectNe__Proje__4B7734FF">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectNews" Type="Self.ProjectNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectNews">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectNe__Proje__540C7B00">
+          <End Role="ProjectNews" Type="Self.ProjectNews" Multiplicity="1" />
+          <End Role="ProjectNewsComments" Type="Self.ProjectNewsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectNews">
+              <PropertyRef Name="ProjectNewsID" />
+            </Principal>
+            <Dependent Role="ProjectNewsComments">
+              <PropertyRef Name="ProjectNewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__Projec__73BA3083">
+          <End Role="ProjectStatuses" Type="Self.ProjectStatuses" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatuses">
+              <PropertyRef Name="ProjectStatusID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ProjectStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__ScopeI__4D94879B">
+          <End Role="Scopes" Type="Self.Scopes" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scopes">
+              <PropertyRef Name="ScopeID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ScopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Regions__Country__38996AB5">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Regions" Type="Self.Regions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Regions">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__1CF15040">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InvestNetworkModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentStatuses" EntityType="Self.PaymentStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectComments" EntityType="Self.ProjectComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectNews" EntityType="Self.ProjectNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectNewsComments" EntityType="Self.ProjectNewsComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectStatuses" EntityType="Self.ProjectStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scopes" EntityType="Self.Scopes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="Self.FK__Cities__RegionID__3B75D760">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Paymen__00200768" Association="Self.FK__Payments__Paymen__00200768">
+            <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Projec__7E37BEF6" Association="Self.FK__Payments__Projec__7E37BEF6">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectCo__Proje__4F47C5E3" Association="Self.FK__ProjectCo__Proje__4F47C5E3">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectComments" EntitySet="ProjectComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectNe__Proje__4B7734FF" Association="Self.FK__ProjectNe__Proje__4B7734FF">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectNews" EntitySet="ProjectNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectNe__Proje__540C7B00" Association="Self.FK__ProjectNe__Proje__540C7B00">
+            <End Role="ProjectNews" EntitySet="ProjectNews" />
+            <End Role="ProjectNewsComments" EntitySet="ProjectNewsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__Projec__73BA3083" Association="Self.FK__Projects__Projec__73BA3083">
+            <End Role="ProjectStatuses" EntitySet="ProjectStatuses" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__ScopeI__4D94879B" Association="Self.FK__Projects__ScopeI__4D94879B">
+            <End Role="Scopes" EntitySet="Scopes" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="Self.FK__Regions__Country__38996AB5">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Regions" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__1CF15040" Association="Self.FK__Users__RoleId__1CF15040">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InvestNetworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK__Cities__RegionID__3B75D760" FromRole="Cities" ToRole="Regions" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Regions" Relationship="Self.FK__Regions__Country__38996AB5" FromRole="Countries" ToRole="Regions" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ToUserID" Type="Int32" Nullable="false" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Sum" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentStatus1" Relationship="Self.FK__Payments__Paymen__00200768" FromRole="Payments" ToRole="PaymentStatuses" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Payments__Projec__7E37BEF6" FromRole="Payments" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Name="PaymentStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__Paymen__00200768" FromRole="PaymentStatuses" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="ProjectComment">
+          <Key>
+            <PropertyRef Name="ProjectCommentID" />
+          </Key>
+          <Property Name="ProjectCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__ProjectCo__Proje__4F47C5E3" FromRole="ProjectComments" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="ProjectNew">
+          <Key>
+            <PropertyRef Name="ProjectNewsID" />
+          </Key>
+          <Property Name="ProjectNewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewsDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NewsTittle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__ProjectNe__Proje__4B7734FF" FromRole="ProjectNews" ToRole="Projects" />
+          <NavigationProperty Name="ProjectNewsComments" Relationship="Self.FK__ProjectNe__Proje__540C7B00" FromRole="ProjectNews" ToRole="ProjectNewsComments" />
+        </EntityType>
+        <EntityType Name="ProjectNewsComment">
+          <Key>
+            <PropertyRef Name="ProjectNewsCommentID" />
+          </Key>
+          <Property Name="ProjectNewsCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectNewsID" Type="Int32" Nullable="false" />
+          <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProjectNew" Relationship="Self.FK__ProjectNe__Proje__540C7B00" FromRole="ProjectNewsComments" ToRole="ProjectNews" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="LocationCityID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ScopeID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkToBusinessPlan" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LinkToFinancialPlan" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LinkToVideoPresentation" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LinkToGuaranteeLetter" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectStatusID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LinkToImg" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="NecessaryFunding" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ShortDescription" Type="String" MaxLength="135" FixedLength="false" Unicode="true" />
+          <Property Name="FundingDuration" Type="Int32" />
+          <Property Name="IsInspected" Type="Boolean" Nullable="false" />
+          <Property Name="ProjectFilesDirectory" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__Projec__7E37BEF6" FromRole="Projects" ToRole="Payments" />
+          <NavigationProperty Name="ProjectComments" Relationship="Self.FK__ProjectCo__Proje__4F47C5E3" FromRole="Projects" ToRole="ProjectComments" />
+          <NavigationProperty Name="ProjectNews" Relationship="Self.FK__ProjectNe__Proje__4B7734FF" FromRole="Projects" ToRole="ProjectNews" />
+          <NavigationProperty Name="ProjectStatus" Relationship="Self.FK__Projects__Projec__73BA3083" FromRole="Projects" ToRole="ProjectStatuses" />
+          <NavigationProperty Name="Scope" Relationship="Self.FK__Projects__ScopeI__4D94879B" FromRole="Projects" ToRole="Scopes" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="ProjectStatusID" />
+          </Key>
+          <Property Name="ProjectStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Projects__Projec__73BA3083" FromRole="ProjectStatuses" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__RegionID__3B75D760" FromRole="Regions" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Regions__Country__38996AB5" FromRole="Regions" ToRole="Countries" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__1CF15040" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Scope">
+          <Key>
+            <PropertyRef Name="ScopeID" />
+          </Key>
+          <Property Name="ScopeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Projects__ScopeI__4D94879B" FromRole="Scopes" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="Avatar" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PostNotice" Type="Boolean" />
+          <Property Name="FilesBrowserDirectory" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__RoleId__1CF15040" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersInfoID" />
+          </Key>
+          <Property Name="UsersInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Family" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Middle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Citizenship" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasportSerie" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasportNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasportIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PasportIssuedBy" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AboutMyself" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Cities__RegionID__3B75D760">
+          <End Role="Regions" Type="Self.Region" Multiplicity="1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Regions__Country__38996AB5">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="Regions" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Regions">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Paymen__00200768">
+          <End Role="PaymentStatuses" Type="Self.PaymentStatus" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatuses">
+              <PropertyRef Name="PaymentStatusID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Projec__7E37BEF6">
+          <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectCo__Proje__4F47C5E3">
+          <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectComments" Type="Self.ProjectComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectComments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectNe__Proje__4B7734FF">
+          <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectNews" Type="Self.ProjectNew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectNews">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectNe__Proje__540C7B00">
+          <End Role="ProjectNews" Type="Self.ProjectNew" Multiplicity="1" />
+          <End Role="ProjectNewsComments" Type="Self.ProjectNewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectNews">
+              <PropertyRef Name="ProjectNewsID" />
+            </Principal>
+            <Dependent Role="ProjectNewsComments">
+              <PropertyRef Name="ProjectNewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__Projec__73BA3083">
+          <End Role="ProjectStatuses" Type="Self.ProjectStatus" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatuses">
+              <PropertyRef Name="ProjectStatusID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ProjectStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__ScopeI__4D94879B">
+          <End Role="Scopes" Type="Self.Scope" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scopes">
+              <PropertyRef Name="ScopeID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ScopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__1CF15040">
+          <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InvestNetworkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentStatuses" EntityType="Self.PaymentStatus" />
+          <EntitySet Name="ProjectComments" EntityType="Self.ProjectComment" />
+          <EntitySet Name="ProjectNews" EntityType="Self.ProjectNew" />
+          <EntitySet Name="ProjectNewsComments" EntityType="Self.ProjectNewsComment" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="ProjectStatuses" EntityType="Self.ProjectStatus" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Scopes" EntityType="Self.Scope" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersInfoes" EntityType="Self.UsersInfo" />
+          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="Self.FK__Cities__RegionID__3B75D760">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="Self.FK__Regions__Country__38996AB5">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Regions" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Paymen__00200768" Association="Self.FK__Payments__Paymen__00200768">
+            <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Projec__7E37BEF6" Association="Self.FK__Payments__Projec__7E37BEF6">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectCo__Proje__4F47C5E3" Association="Self.FK__ProjectCo__Proje__4F47C5E3">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectComments" EntitySet="ProjectComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectNe__Proje__4B7734FF" Association="Self.FK__ProjectNe__Proje__4B7734FF">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectNews" EntitySet="ProjectNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectNe__Proje__540C7B00" Association="Self.FK__ProjectNe__Proje__540C7B00">
+            <End Role="ProjectNews" EntitySet="ProjectNews" />
+            <End Role="ProjectNewsComments" EntitySet="ProjectNewsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__Projec__73BA3083" Association="Self.FK__Projects__Projec__73BA3083">
+            <End Role="ProjectStatuses" EntitySet="ProjectStatuses" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__ScopeI__4D94879B" Association="Self.FK__Projects__ScopeI__4D94879B">
+            <End Role="Scopes" EntitySet="Scopes" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__1CF15040" Association="Self.FK__Users__RoleId__1CF15040">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InvestNetworkModelStoreContainer" CdmEntityContainer="InvestNetworkEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="InvestNetworkModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatuses">
+            <EntityTypeMapping TypeName="InvestNetworkModel.PaymentStatus">
+              <MappingFragment StoreEntitySet="PaymentStatuses">
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectComments">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectComment">
+              <MappingFragment StoreEntitySet="ProjectComments">
+                <ScalarProperty Name="ProjectCommentID" ColumnName="ProjectCommentID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectNews">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectNew">
+              <MappingFragment StoreEntitySet="ProjectNews">
+                <ScalarProperty Name="ProjectNewsID" ColumnName="ProjectNewsID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
+                <ScalarProperty Name="NewsTittle" ColumnName="NewsTittle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectNewsComments">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectNewsComment">
+              <MappingFragment StoreEntitySet="ProjectNewsComments">
+                <ScalarProperty Name="ProjectNewsCommentID" ColumnName="ProjectNewsCommentID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="ProjectNewsID" ColumnName="ProjectNewsID" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="LocationCityID" ColumnName="LocationCityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LinkToBusinessPlan" ColumnName="LinkToBusinessPlan" />
+                <ScalarProperty Name="LinkToFinancialPlan" ColumnName="LinkToFinancialPlan" />
+                <ScalarProperty Name="LinkToVideoPresentation" ColumnName="LinkToVideoPresentation" />
+                <ScalarProperty Name="LinkToGuaranteeLetter" ColumnName="LinkToGuaranteeLetter" />
+                <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LinkToImg" ColumnName="LinkToImg" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="NecessaryFunding" ColumnName="NecessaryFunding" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="FundingDuration" ColumnName="FundingDuration" />
+                <ScalarProperty Name="IsInspected" ColumnName="IsInspected" />
+                <ScalarProperty Name="ProjectFilesDirectory" ColumnName="ProjectFilesDirectory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStatuses">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectStatus">
+              <MappingFragment StoreEntitySet="ProjectStatuses">
+                <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scopes">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Scope">
+              <MappingFragment StoreEntitySet="Scopes">
+                <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InvestNetworkModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="PostNotice" ColumnName="PostNotice" />
+                <ScalarProperty Name="FilesBrowserDirectory" ColumnName="FilesBrowserDirectory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInfoes">
+            <EntityTypeMapping TypeName="InvestNetworkModel.UsersInfo">
+              <MappingFragment StoreEntitySet="UsersInfo">
+                <ScalarProperty Name="UsersInfoID" ColumnName="UsersInfoID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle" ColumnName="Middle" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="PasportSerie" ColumnName="PasportSerie" />
+                <ScalarProperty Name="PasportNumber" ColumnName="PasportNumber" />
+                <ScalarProperty Name="PasportIssueDate" ColumnName="PasportIssueDate" />
+                <ScalarProperty Name="PasportIssuedBy" ColumnName="PasportIssuedBy" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Произошла ошибочка :)";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Header {
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+
+	<div class="error_pagenotfound">
+    	
+        <strong>404</strong>
+        <br>
+    	<b>Oops... Page Not Found!</b>
+        
+        <i>Sorry the Page Could not be Found here.</i>
+
+        <p>Try using the button below to go to main page of the site</p>
+        
+        <div class="clearfix mar_top3"></div>
+    	
+        <a href="#" class="but_goback"><i class="icon-circle-arrow-left icon-large"></i> Go to Back</a>
+        
+    </div><!-- end error page notfound -->
+        
+
+</div>
+

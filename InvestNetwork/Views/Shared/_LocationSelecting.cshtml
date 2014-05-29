@@ -1,0 +1,154 @@
+﻿@model InvestNetwork.Core.ProjectStart
+
+<div class="join_row" id="country_row">
+    <div class="join_label"><strong>@Html.LabelFor(model => model.LocationCityID)</strong></div>
+    <div class="join_element">
+        <select id="ddCountries"></select>
+    </div>
+</div>
+<div class="join_row" id="region_row">
+    <div class="join_label"></div>
+    <div class="join_element">
+        <select id="ddRegions"></select>
+    </div>
+</div>
+<div class="join_row" id="city_row">
+    <div class="join_label"></div>
+    <div class="join_element">
+        <select id="ddCities"></select>
+    </div>
+
+</div>
+
+@Html.HiddenFor(model => model.LocationCityID)
+
+<script>
+    var NULL_ID = -999;
+    var postBackModelCityID = '@Html.Raw(Json.Encode(Model != null ? Model.LocationCityID : 0))'; 
+    var postBackModelCity;
+    var baseUrl = '@Url.Content("~/")';
+    HideAll();
+    (function () {
+        $.getJSON(baseUrl + "Api/Location/GetAllContries",
+            function (data) {
+                $('<option>', { html: "Выберите страну" }).appendTo($('#ddCountries'));
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.CountryName }).attr('data-country_id', val.CountryID).
+                        appendTo($('#ddCountries'));
+                });
+
+                if (postBackModelCityID > 0) { // Если не прошла валидация формы и объект вернулся обратно
+                    RecoverDropDowns(postBackModelCityID);
+                }
+            });
+
+        $("#ddCountries").bind("change", function () {
+            setHiddenCityIdField("");
+            var countryId = $(this).children("option:selected").attr("data-country_id");
+            OnCountryChanged(countryId);
+            fillRegionsList(countryId);
+        });
+
+        $("#ddRegions").bind("change", function () {
+            setHiddenCityIdField("");
+            var regionId = $(this).children("option:selected").attr("data-region_id");
+            OnRegionChanged(regionId);
+            fillCitiesList(regionId);
+        });
+
+        $("#ddCities").bind("change", function () {
+            var cityId_ = $(this).children("option:selected").attr("data-city_id");
+            setHiddenCityIdField(cityId_);
+        });
+    })();
+
+    function HideAll() {
+        $("#region_row, #city_row").hide();
+    }
+
+    function ShowAll() {
+        $("#region_row, #city_row").show();
+    }
+
+    /*-----------------------------------Методы для стран-------------------------------------*/
+
+    function OnCountryChanged(countryId) { // Страна выбрана
+        $('#city_row').slideUp(400);
+        if (countryId)
+            $('#region_row').slideDown(400);
+        else
+            $('#region_row').slideUp(400);
+        $('#ddRegions').empty();
+        $('<option>', { html: "Выберите регион" }).appendTo($('#ddRegions'));
+    }
+
+    /*-----------------------------------Методы для регионов-------------------------------------*/
+
+    function OnRegionsLoaded() { } // Регионы загрузились
+
+    function OnRegionChanged(regionId) { // Регион выбран
+        if (regionId)
+            $('#city_row').slideDown(400);
+        else
+            $('#city_row').slideUp(400);
+        $('#ddCities').empty();
+        $('<option>', { html: "Выберите город" }).val(NULL_ID).appendTo($('#ddCities'));
+    }
+
+    /*-----------------------------------Методы для городов-------------------------------------*/
+
+    function OnCitiesLoaded() { } // Города загрузились
+
+    function RecoverDropDowns(cityId) { // Восстанавливаем выбранные до отправки формы элементы
+        $.getJSON(baseUrl + "Api/Location/GetCityById/" + cityId,
+            function (data) {
+                postBackModelCity = data;
+                $('#ddCountries').children('option[data-country_id="' + data.CountryID + '"]').attr("selected", "selected");
+                fillRegionsList(data.CountryID, function () {
+                    $("#region_row").show();
+                    $('#ddRegions').children('option[data-region_id="' + data.RegionID + '"]').attr("selected", "selected");
+                    fillCitiesList(data.RegionID, function () {
+                        $("#city_row").show();
+                        $('#ddCities').children('option[data-city_id="' + data.CityID + '"]').attr("selected", "selected");
+                    });
+                });
+            });
+    }
+
+    function fillCitiesList(regionId, callback) {
+        $.getJSON(baseUrl + "Api/Location/GetRegionCities/" + regionId,
+            function (data) {
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.CityName }).attr('data-city_id', val.CityID).
+                        appendTo($('#ddCities'));
+                });
+                if (callback) {
+                    callback();
+                }
+                OnCitiesLoaded();
+            });
+    }
+
+    function fillRegionsList(countryId, callback) {
+        $.getJSON(baseUrl + "Api/Location/GetCountryRegions/" + countryId,
+            function (data) {
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.RegionName }).attr('data-region_id', val.RegionID).
+                        appendTo($('#ddRegions'));
+                });
+                if (callback) {
+                    callback();
+                }
+                OnRegionsLoaded();
+            });
+    }
+
+    function setHiddenCityIdField(value) { // Изменение значения поля CityID модели, которая будет отправлена на сервер
+        if (!isNaN(value) && parseInt(value) > 0) {
+            $("#LocationCityID").val(value);
+        }
+        else {
+            $("#LocationCityID").val("");
+        }
+    }
+</script>

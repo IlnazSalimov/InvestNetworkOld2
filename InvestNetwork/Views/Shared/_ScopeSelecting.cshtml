@@ -1,0 +1,40 @@
+﻿@model InvestNetwork.Core.ProjectStart
+
+<div class="join_row" id="category_row">
+    <div class="join_label"><strong>@Html.LabelFor(model => model.ScopeID)</strong></div>
+    <div class="join_element">
+        <select id="ddScopes"></select>
+    </div>
+</div>
+
+@Html.HiddenFor(model => model.ScopeID)
+
+<script>
+    var NULL_ID = -999;
+    var scopeId = '@Html.Raw(Json.Encode(Model != null ? Model.ScopeID : 0))';
+    var baseUrl = '@Url.Content("~/")';
+    (function () {
+        $.getJSON(baseUrl + "Api/Scope/GetAllScopes",
+            function (data) {
+                $('<option>', { html: "Выберите сферу" }).val(NULL_ID).appendTo($('#ddScopes'));
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.Title }).val(val.ScopeID).
+                        appendTo($('#ddScopes'));
+                });
+                if (scopeId > 0) {
+                    $('#ddScopes').children('option[value="' + scopeId + '"]').attr("selected", "selected");
+                }
+            });
+
+        $("#ddScopes").bind("change", function () {
+            var scopeId_ = parseInt($(this).children("option:selected").val());
+
+            if (scopeId_ > 0) {
+                $("#ScopeID").val(scopeId_);
+            }
+            else {
+                $("#ScopeID").val("");
+            }
+        });
+    })();
+</script>

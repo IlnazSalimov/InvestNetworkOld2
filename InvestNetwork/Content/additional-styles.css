@@ -1,0 +1,111 @@
+﻿
+/*-------------  Стиль форм --------------*/
+.join_row * {
+    box-sizing: border-box;
+}
+
+.join_row {
+    padding: 4px;
+    clear: both;
+    overflow: hidden;
+    padding: 1px;
+    margin: 0 0 10px 0;
+}
+
+    .join_row .join_label {
+        width: 25%;
+        float: left;
+        padding-right: 10px;
+    }
+
+    .join_row .join_element {
+        width: 75%;
+        float: right;
+    }
+    .join_row input[type="submit"] {
+        background-color: #eee;
+        border: 1px solid #ddd;
+        padding: 4px 8px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        border-radius: 4px;
+        color: #333;
+        text-transform: uppercase;
+    }
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=password],
+textarea {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=password] {
+    width: 50%;
+}
+
+    input[type=text]:focus,
+    input[type=email]:focus,
+    input[type=url]:focus,
+    input[type=password]:focus,
+    textarea:focus {
+        outline: 0;
+        border-color: #4697e4;
+    }
+
+@media (max-width: 600px) {
+    .join_row {
+        margin: 0 0 15px 0;
+    }
+
+        .join_row > .join_label {
+            width: 100%;
+            float: none;
+            margin: 0 0 5px 0;
+        }
+
+        .join_row > .join_element {
+            width: 100%;
+            float: none;
+        }
+
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    input[type=password],
+    textarea,
+    select {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .join_row > .join_label {
+        text-align: right;
+    }
+}
+/*------------------------------------------------*/
+
+.our_team_box_big li a.project_name {
+    margin: 0
+}
+
+input.amount-input {
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    border-radius: 6px; 
+    outline:0; 
+    height:45px; 
+    width: 275px; 
+    padding-left:10px; 
+    padding-right:10px;
+    font-size: 28px;
+    font-weight: bold;
+}

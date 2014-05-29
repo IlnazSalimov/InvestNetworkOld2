@@ -1,0 +1,83 @@
+﻿@model InvestNetwork.Core.SignupUser
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>Регистрация</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="content_left">
+    @using (Html.BeginForm())
+        {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <div class="accrodation">
+                <div class="join_row">
+                    <div class="join_label">@Html.LabelFor(model => model.FullName)</div>
+                    <div class="join_element">
+                        @Html.EditorFor(model => model.FullName)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <div class="join_label">@Html.LabelFor(model => model.Email)</div>
+                    <div class="join_element">
+                        @Html.EditorFor(model => model.Email)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <div class="join_label">@Html.LabelFor(model => model.Password)</div>
+                    <div class="join_element">
+                        @Html.PasswordFor(model => model.Password)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <div class="join_label">@Html.LabelFor(model => model.ConfirmPassword)</div>
+                    <div class="join_element">
+                        @Html.PasswordFor(model => model.ConfirmPassword)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <div class="join_element">
+                        @Html.ShowCaptcha("Account", "Captcha", 200, 50)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <div class="join_element">@Html.ValidationMessageFor(model => model.Captcha)</div>
+                    <div class="join_label">@Html.LabelFor(model => model.Captcha)</div>
+                    <div class="join_element">
+                        @Html.PasswordFor(model => model.Captcha)
+                    </div>
+                </div>
+
+                <div class="join_row">
+                    <input type="submit" value="Зарегистрироваться" />
+                </div>
+        </fieldset>
+    }
+    </div>
+</div>
+
+@section Scripts{
+
+}
+

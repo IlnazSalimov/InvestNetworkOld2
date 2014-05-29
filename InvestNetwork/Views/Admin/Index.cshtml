@@ -1,0 +1,151 @@
+﻿@using InvestNetwork.Core;
+
+@{
+    ViewBag.Title = "Обзор проектов";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_left">
+
+    <h2>Image with <strong>Lightboxes</strong></h2>
+
+    <div class="one_half">
+        <div class="portfolio_image">
+            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Many desktop publishing packages">
+                <img src="http://placehold.it/680x400" alt=""></a>
+            <div class="title">Many desktop packages</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+    <div class="one_half last">
+        <div class="portfolio_image">
+            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Prity have suffered alteration form">
+                <img src="http://placehold.it/680x400" alt=""></a>
+            <div class="title">Pritave alteration form</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+    <div class="clearfix mar_top3"></div>
+
+    <div class="one_half">
+        <div class="portfolio_image">
+            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Many desktop publishing packages">
+                <img src="http://placehold.it/680x400" alt=""></a>
+            <div class="title">Many desktop packages</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+    <div class="one_half last">
+        <div class="portfolio_image">
+            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Prity have suffered alteration form">
+                <img src="http://placehold.it/680x400" alt=""></a>
+            <div class="title">Prity alteration form</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+    <div class="clearfix mar_top4"></div>
+
+    <h2>Vimeo, YouTube and Movie <strong>Videos</strong></h2>
+
+    <div class="one_half">
+        <div class="portfolio_image">
+            <a class="fancybox-media" href="http://www.youtube.com/watch?v=qqXi8WmQ_WM" title="Majority have suffered alteration">
+                <img src="images/blog/youtube-logo.png" alt=""></a>
+            <div class="title">Majority alteration</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+    <div class="one_half last">
+        <div class="portfolio_image">
+            <a class="fancybox-media" href="http://vimeo.com/7874398&amp;width=700" title="Majority have suffered alteration">
+                <img src="images/blog/vimeo-logo.png" alt=""></a>
+            <div class="title">There many passages</div>
+        </div>
+    </div>
+    <!-- end section -->
+
+</div>
+
+<div class="right_sidebar">
+
+    <div class="sidebar_widget">
+        <div class="sidebar_title">
+            <h3><i>Панель</i> Управления</h3>
+        </div>
+        <ul class="arrows_list1">
+            <li><a href="@Url.Action("GetAllProjects", "Admin")"><i class="icon-angle-right"></i> Все проекты</a></li>
+            <li><a href="@Url.Action("GetInspectingProjects", "Admin")"><i class="icon-angle-right"></i> Проекты ожидающие проверку</a></li>
+            <li><a href="#"><i class="icon-angle-right"></i> Пользователи</a></li>
+        </ul>
+    </div>
+    <!-- end section -->
+
+    <div class="clearfix mar_top3"></div>
+
+    <div class="sidebar_widget">
+
+        <div class="sidebar_title">
+            <h3><i>Последние</i> Проекты</h3>
+        </div>
+
+        <ul class="recent_posts_list">
+            @foreach (Project p in ViewBag.RecentProjects as IEnumerable<Project>)
+            {
+                <li>
+                    <span><a href="#">
+                        <img src="@(p.LinkToImg + "@50x50sc")" alt=""></a></span>
+                    <a href="@Url.Action("ReviewProject", new { Id = p.ProjectID })">@p.Name</a>
+                    <i>@p.CreateDate.ToString("MMMM d, yyyy")</i>
+                </li>
+            }
+
+        </ul>
+
+    </div>
+    <!-- end section -->
+
+    <div class="clearfix mar_top3"></div>
+
+    <div class="clientsays_widget">
+
+        <div class="sidebar_title">
+            <h3><i>Happy</i> Client Say's</h3>
+        </div>
+
+        <img src="http://placehold.it/48x48" alt="">
+        <strong>- Henry Brodie</strong><p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage discovered undou btable source. which looks reasonable of the generated charac eristic words.</p>
+
+    </div>
+    <!-- end section -->
+
+    <div class="clearfix mar_top8"></div>
+
+    <div class="sidebar_widget">
+
+        <div class="sidebar_title">
+            <h3><i>Text</i> Widget</h3>
+        </div>
+        <p>Going to use a passage of lorem lpsum you need to be sure there are anything embarrassin hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend the repeat predefined chunks as thenecessary making this the first true generator.</p>
+
+    </div>
+
+</div>
+<div class="clearfix mar_top4"></div>
+
+@section Scripts{
+}

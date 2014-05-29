@@ -1,0 +1,52 @@
+﻿@model InvestNetwork.Core.UserProfile
+@using InvestNetwork.Application.Core;
+@{
+    ViewBag.Title = "Профиль";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h2>@Model.User.FullName</h2>
+            </div>
+        </div>
+    </div>
+}
+
+@Html.UserImage(Model.User.Id, false, 210, 230, new { @class = "teammempic" })
+<p>Адрес: @((Model.UsersInfo == null) ? "" : Model.UsersInfo.Address)</p>
+<p>О себе: @((Model.UsersInfo == null) ? "" : Model.UsersInfo.AboutMyself)</p>
+
+<div class="content_left">
+    <h2><strong>Проекты</strong></h2>
+    @foreach (InvestNetwork.Core.Project project in Model.Projects)
+    {
+        <div class="blog_post">
+            <div class="blog_postcontent">
+                <div class="image_frame small">
+                     @Html.ProjectImage(project.ProjectID, true, false, 210, 230, new { @class = "teammempic" })
+                </div>
+                <div class="post_info_content_small">
+                    <h3>@Html.ActionLink(project.Name, "View", "Project", new { id = project.ProjectID }, new { @class="project_name" })</h3>
+                    <div class="clearfix"></div>
+                    <p>@project.ShortDescription</p>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="clearfix divider_line3"></div>
+    }
+</div>
+
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+
+@section Scripts{
+
+}

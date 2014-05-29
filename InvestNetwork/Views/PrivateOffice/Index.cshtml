@@ -1,0 +1,567 @@
+﻿@model InvestNetwork.Core.User
+@using InvestNetwork.Application.Core;
+@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h2>Личный кабинет</h2>
+            </div>
+        </div>
+    </div>
+}
+
+<div style="width: 250px; float: left">
+    @Html.UserImage(Model.Id, false, 210, 230, new { @class = "teammempic" })
+    <h2><strong>@Model.FullName</strong></h2>
+</div>
+<div style="margin-left: 250px">
+    <h3>Сменить изображение</h3>
+    @using (Html.BeginForm("Index", "PrivateOffice", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+    {  
+        <p>
+            <input type="file" name="file" id="file" />
+        </p>
+        <p>
+            <input type="submit" value="ОК" class="submit" />
+        </p>
+    }
+</div>
+
+
+<div class="clearfix divider_line10"></div>
+
+<div class="content_fullwidth">
+
+    <div id="tabs-two">
+
+        <ul class="tabs-two fullpage">
+            <li class=""><a href="#tab-two1">Данные</a></li>
+            <li class=""><a href="#tab-two2">История</a></li>
+            <li class=""><a href="#tab-two3">Сообщения</a></li>
+            <li class=""><a href="#tab-two4">Проекты</a></li>
+            <li class=""><a href="#tab-two5">Настройки</a></li>
+
+        </ul>
+        <!-- /# end tab links -->
+
+
+        <div class="tab-container-two fullpage">
+
+            <div id="tab-two1" class="tab-content-two fullpage" style="display: block;">
+                <h2><strong>Личные данные</strong></h2>
+
+                <div class="result-message"></div>
+
+                <div class="content_left">
+                    @{
+                        var usersInfo = ViewBag.usersInfo as InvestNetwork.Core.UsersInfo;
+            
+                        @Html.ValidationSummary(true)
+
+                        <fieldset>
+
+                            <div class="accrodation">
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.Family)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.Family)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.Name)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.Name)
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => usersInfo.UserID)
+
+                                @Html.HiddenFor(model => usersInfo.UsersInfoID)
+
+                                @Html.HiddenFor(model => usersInfo.RegisterDate)
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.Middle)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.Middle)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.DateOfBirth)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.DateOfBirth)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.Address)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.Address)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.Citizenship)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.Citizenship)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.PasportSerie)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.PasportSerie)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.PasportNumber)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.PasportNumber)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.PasportIssuedBy)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.PasportIssuedBy)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.PasportIssueDate)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.PasportIssueDate)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.PhoneNumber)</div>
+                                    <div class="join_element">
+                                        @Html.EditorFor(model => usersInfo.PhoneNumber)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <div class="join_label">@Html.LabelFor(model => usersInfo.AboutMyself)</div>
+                                    <div class="join_element">
+                                        @Html.TextAreaFor(model => usersInfo.AboutMyself)
+                                    </div>
+                                </div>
+
+                                <div class="join_row">
+                                    <input type="button" id="btnEdit" value="Сохранить" />
+                                </div>
+                            </div>
+                        </fieldset>
+                                
+                        <script>
+                            var baseUrl = '@Url.Content("~/")';
+                            (function () {
+                                $("#btnEdit").bind("click", function () {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: baseUrl + "Api/UsersInfo/Edit",
+                                        data: getCurrentUserInfo(),
+                                        success: function (response) {
+                                            if (response.isSuccess) {
+                                                showMesage(response.isSuccess, response.successMessage);
+                                            }
+                                            else {
+                                                showMesage(response.isSuccess, response.errorMessage);
+                                            }
+                                        },
+                                        error: function () {
+                                            showMesage(false, "Ошибка при сохранении");
+                                        },
+                                        dataType: "json"
+                                    });
+                                });
+                            })();
+
+                            function getCurrentUserInfo() {
+                                var UsersInfoID = '@usersInfo.UsersInfoID';
+                                var UserID = '@usersInfo.UserID';
+                                var Family = $('#usersInfo_Family').val();
+                                var Name = $('#usersInfo_Name').val();
+                                var Middle = $('#usersInfo_Middle').val();
+                                var DateOfBirth = $('#usersInfo_DateOfBirth').val();
+                                var Address = $('#usersInfo_Address').val();
+                                var Citizenship = $('#usersInfo_Citizenship').val();
+                                var PasportSerie = $('#usersInfo_PasportSerie').val();
+                                var PasportNumber = $('#usersInfo_PasportNumber').val();
+                                var PasportIssueDate = $('#usersInfo_PasportIssueDate').val();
+                                var PasportIssuedBy = $('#usersInfo_PasportIssuedBy').val();
+                                var PhoneNumber = $('#usersInfo_PhoneNumber').val();
+                                var AboutMyself = $('#usersInfo_AboutMyself').val();
+                                var RegisterDate = '@usersInfo.RegisterDate';
+
+                                return {
+                                    UsersInfoID: UsersInfoID,
+                                    UserID: UserID,
+                                    Family: Family,
+                                    Name: Name,
+                                    Middle: Middle,
+                                    DateOfBirth: DateOfBirth,
+                                    Address: Address,
+                                    Citizenship: Citizenship,
+                                    PasportSerie: PasportSerie,
+                                    PasportNumber: PasportNumber,
+                                    PasportIssueDate: PasportIssueDate,
+                                    PasportIssuedBy: PasportIssuedBy,
+                                    PhoneNumber: PhoneNumber,
+                                    AboutMyself: AboutMyself,
+                                    RegisterDate: RegisterDate
+                                };
+                            }
+
+                            function showMesage(isSuccess, message) {
+                                var container = $("<div>").addClass(isSuccess ? "success" : "error");
+                                $("div.result-message").empty().append(container.append(
+                                    $("<div>").addClass("message-box-wrap").text(message)));
+                                $('html, body').animate({
+                                    scrollTop: $("div.result-message").offset().top - 300
+                                }, 500);
+                            }
+                        </script>
+                    }
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+
+            <div id="tab-two2" class="tab-content-two fullpage" style="display: none;">
+                <h2><strong>История участия</strong></h2>
+                <div class="content_left">
+                    <table class="table-list">
+                        <tr>
+                            <th>Имя проекта</th>
+                            <th>Статус проекта</th>
+                            <th>Взнос</th>
+                            <th>Статус взноса</th>
+                            <th>Дата взноса</th>
+                        </tr>
+
+                        @{
+                            var partycipations = ViewBag.partycipations as List<InvestNetwork.Core.PartycipationUsersInfo>;
+                        }
+
+                        @foreach (InvestNetwork.Core.PartycipationUsersInfo part in partycipations)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(part.ProjectName, "View", "Project", new { id = part.ProjectId }, new { @class="project_name" })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => part.ProjectStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => part.Sum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => part.PaymentStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => part.PaymentDate)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+
+            <div id="tab-two3" class="tab-content-two fullpage" style="display: none;">
+                <h2><strong>Сообщения</strong></h2>
+
+                <div class="result-message"></div>
+
+                @foreach (InvestNetwork.Core.Message message in ViewBag.messages)
+                {            
+                    <div class="comment_wrap">
+                        <div class="gravatar">
+                            @Html.UserImage(message.User.Id, true, 50, 50, new { @class = "teammempic" })
+                        </div>
+                        <div class="comment_content">
+                            <div class="comment_meta">
+                                <div class="comment_author">@Html.UserLink(message.User.Id) - <i>@message.MessageDate.ToString("dd.MM.yyyy HH:mm:ss")</i></div>
+                            </div>
+                            <div class="comment_text">
+                                <p>@message.MessageText</p>
+                                <a class="modalbox" href="#inline" onclick="beforeOpen()" data-user-id="@message.User.Id">Ответить</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div id="inline">
+                    <h2>Отправка сообщения</h2>
+
+                    <form id="contact" name="contact" action="#" method="post">
+                        <label for="msg">Введите сообщение</label>
+                        <textarea id="msg" name="msg" class="txtarea"></textarea>
+                        <input type="button" id="send" value="Отправить" />
+                        <em id="sending">Отправка...</em>
+                    </form>
+                </div>
+
+                <script>
+                    var baseUrl = '@Url.Content("~/")';
+                    (function () {
+                        $(".modalbox").bind("click", function () {
+                            var id = $(this).attr("data-user-id");
+                            $("#contact").attr("data-user-id", id);
+                        });
+
+                        $("#send").bind("click", function () {
+
+                            var msgval = $("#msg").val();
+                            var msglen = msgval.length;
+                            // Проверка длины сообщения
+                            if (msglen < 1) {
+                                $("#msg").addClass("error");
+                            }
+                            else if (msglen >= 1) {
+                                $("#msg").removeClass("error");
+                            }
+
+                            if (msglen >= 1) {
+                                // сначала мы скрываем кнопку отправки
+                                $("#send").hide();
+                                $("#sending").show();
+                                $.ajax({
+                                    type: 'POST',
+                                    url: baseUrl + 'Api/Message/Send',
+                                    data: {
+                                        Message: msgval,
+                                        ToUserID: $("#contact").attr("data-user-id")
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data) {
+                                            $("#contact").fadeOut("fast", function () {
+                                                $(this).before("<div id=\"send-result\"><strong>Сообщение отправлено</strong></div>");
+                                                setTimeout("$.fancybox.close()", 2000);
+                                            });
+                                        }
+                                        else {
+                                            $("#contact").fadeOut("fast", function () {
+                                                $(this).before("<div id=\"send-result\"><strong>Произошла ошибка</strong></div>");
+                                                setTimeout("$.fancybox.close()", 2000);
+                                            });
+                                        }
+                                    },
+                                    error: function () {
+                                        $("#contact").fadeOut("fast", function () {
+                                            $(this).before("<div id=\"send-result\"><strong>Произошла ошибка</strong></div>");
+                                            setTimeout("$.fancybox.close()", 2000);
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    })();
+
+                    function beforeOpen() {
+                        $("#send-result").remove();
+                        $("#msg").val(null);
+                        $("#sending").hide();
+                        $("#send").show();
+                        $("#contact").show();
+                    };
+                </script>
+
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab-two4" class="tab-content-two fullpage" style="display: none;">
+                <h2><strong>Мои проекты</strong></h2>
+                <div class="content_left">
+                    @{
+                        var projects = ViewBag.Projects as List<InvestNetwork.Core.Project>;
+                        foreach (InvestNetwork.Core.Project project in projects)
+                        {
+                            <div class="blog_post">
+                                <div class="blog_postcontent">
+                                    <div class="image_frame small">
+                                            @Html.ProjectImage(project.ProjectID, true, false, 210, 230, new { @class = "teammempic" })
+                                    </div>
+                                    <div class="post_info_content_small">
+                                        <h3>@Html.ActionLink(project.Name, "View", "Project", new { id = project.ProjectID }, new { @class="project_name" })</h3>
+                                        <div class="clearfix"></div>
+                                        <p>@project.ShortDescription</p>
+
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="clearfix divider_line3"></div>
+                        }
+                    }
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab-two5" class="tab-content-two fullpage" style="display: none;">
+                @{
+                    var userSettings = ViewBag.userSettings as InvestNetwork.Core.UserSettings;
+                    
+                    @Html.ValidationSummary(true)
+                    
+                    <h2><strong>Настройки</strong></h2>
+                    <div class="result-message"></div>
+                    @Html.HiddenFor(e => userSettings.Id)
+                    @Html.HiddenFor(e => userSettings.RoleId)
+                    @Html.HiddenFor(e => userSettings.Password)
+                    <div class="clearfix divider_line10"></div>
+                    <h3>E-mail и Имя профиля</h3>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.Email)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.Email)
+                        </div>
+                    </div>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.FullName)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.FullName)
+                        </div>
+                    </div>
+                    <div class="clearfix divider_line10"></div>
+                    <h3>Смена пароля</h3>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.OldPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.OldPassword)
+                        </div>
+                    </div>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.NewPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.NewPassword)
+                        </div>
+                    </div>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.ConfirmPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.ConfirmPassword)
+                        </div>
+                    </div>
+                    <div class="clearfix divider_line10"></div>
+                    <h3>Почта</h3>
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.PostNotice)</div>
+                        <div class="join_element">
+                            @Html.CheckBox("check", userSettings.PostNotice ?? true, new { id = "userSettings_PostNotice" })
+                        </div>
+                    </div>
+                    <div class="join_row">
+                        <input type="button" id="btnSaveSettings" value="Сохранить" />
+                    </div>
+                    <!-- end tab single section -->
+                    
+                    <script>
+                        var baseUrl = '@Url.Content("~/")';
+                        (function () {
+                            $("#btnSaveSettings").bind("click", function () {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: baseUrl + "Api/UserSettings/Edit",
+                                    data: getCurrentUserSettings(),
+                                    success: function (response) {
+                                        if (response.isSuccess) {
+                                            showMesage(response.isSuccess, response.successMessage);
+                                        }
+                                        else {
+                                            showMesage(response.isSuccess, response.errorMessage);
+                                        }
+                                    },
+                                    error: function () {
+                                        showMesage(false, "Ошибка при сохранении");
+                                    },
+                                    dataType: "json"
+                                });
+                            });
+                        })();
+
+                        function getCurrentUserSettings() {
+                            var Id = '@userSettings.Id';
+                            var ID = '@userSettings.Id';
+                            var Password = '@userSettings.Password';
+                            var RoleId = '@userSettings.RoleId';
+                            var Avatar = $('#Avatar').val();
+                            var OldPassword = $('#userSettings_OldPassword').val();
+                            var NewPassword = $('#userSettings_NewPassword').val();
+                            var ConfirmPassword = $('#userSettings_ConfirmPassword').val();
+                            var PostNotice = $('#userSettings_PostNotice').val();
+                            var Email = $('#userSettings_Email').val();
+                            var FullName = $('#userSettings_FullName').val();
+
+                            return {
+                                Avatar: Avatar,
+                                Id: Id,
+                                ID: Id,
+                                OldPassword: OldPassword,
+                                NewPassword: NewPassword,
+                                ConfirmPassword: ConfirmPassword,
+                                PostNotice: PostNotice,
+                                Email: Email,
+                                Password: Password,
+                                FullName: FullName,
+                                RoleId: RoleId
+                            };
+                        }
+
+                        function showMesage(isSuccess, message) {
+                            var container = $("<div>").addClass(isSuccess ? "success" : "error");
+                            $("div.result-message").empty().append(container.append(
+                                $("<div>").addClass("message-box-wrap").text(message)));
+                            $('html, body').animate({
+                                scrollTop: $("div.result-message").offset().top - 300
+                            }, 500);
+                        }
+                    </script>
+                }
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end tab -->
+
+</div>
+
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
+<script>
+    (function () {
+        /*$(".modalbox").fancybox({
+            minWidth: 350,
+            minHeight: 200
+        });
+        $("#contact").submit(function () { return false; });*/
+
+        $("#usersInfo_DateOfBirth, #usersInfo_PasportIssueDate").kendoDatePicker({
+            format: "dd.MM.yyyy"
+        });
+    })();
+</script>
+
+@section Scripts{
+
+}

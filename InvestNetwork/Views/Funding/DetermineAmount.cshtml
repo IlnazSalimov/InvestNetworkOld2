@@ -1,0 +1,41 @@
+﻿@using InvestNetwork.Application.Core;
+
+@model InvestNetwork.Core.Project
+
+@{
+    ViewBag.Title = "Инвестирование";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+
+    <div class="two_third">
+        <h2>Введите сумму</h2>
+        <input type="text" class="amount-input" />
+        <a href="#" class="but_wifi"><i class="icon-hand-right icon-large"></i> Далее</a>
+    </div>
+
+    <div class="one_third last">
+        <ul class="recent_posts_list amount">
+
+            <li>
+                <span>@Html.ProjectImage(Model.ID, true, false, 100, 100)</span>
+                @Html.ProjectLink(Model.ID, false, new { @class = "label"})
+                <i class="author">автора @Model.AuthorFullName</i>
+                <i>финансирование заканчивается в @Model.EndDate.Value.ToString("dddd d MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</i>
+            </li>
+
+        </ul>
+    </div>
+</div>

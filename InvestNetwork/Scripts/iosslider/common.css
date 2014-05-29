@@ -1,0 +1,383 @@
+.fluidHeight {
+	width: 100%;
+	height: 500px;
+	padding: 0;
+	margin: 0px 0 0px 0;
+	position: relative;
+	font-family: 'Open Sans', sans;
+}
+
+.sliderContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+.iosSlider {
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 500px;
+	background: url(../../images/sliders/iosslider/slider-bg1.jpg) no-repeat center top;
+}
+
+.iosSlider .slider {
+	width: 100%;
+	height: 100%;
+}
+
+.iosSlider .slider .item {
+	width: 100%;
+	height: 100%;
+	padding: 0px 0 0px 0;
+}
+
+.iosSlider .slider .item .inner {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 1000px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.iosSlider .slider .item .inner .text1 {
+    position: absolute;
+    top: 90px;
+    padding: 0;
+	opacity: 0;
+}
+.iosSlider .slider .item .inner .text1 span {
+	font-size: 27px;
+	font-weight: normal;
+	color: #595959;
+}
+
+.iosSlider .slider .item .inner .text2 {
+    position: absolute;
+    top: 138px;
+    padding: 0;
+	opacity: 0;
+}
+.iosSlider .slider .item .inner .text2 span {
+	font-size: 45px;
+	font-weight: bold;
+	color: #1889c1
+}
+
+.iosSlider .slider .item .inner .text3 {
+    position: absolute;
+    top: 200px;
+    padding: 0px;
+	opacity: 0;
+}
+.iosSlider .slider .item .inner .text3 span {
+	color: #727272;
+	font-size: 18px;
+	line-height: 27px;
+	border-top: 1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
+	padding: 22px 0px;
+	float: left;
+}
+
+.iosSlider .slider .item .inner .text4 {
+    position: absolute;
+    top: 362px;
+    padding: 0;
+	opacity: 0;
+}
+.iosSlider .slider .item .inner .text4 span {
+	padding: 0px;
+	margin: 0px;
+}
+
+
+.iosSlider .slider .item1 .inner {
+	background-image: url(../../images/sliders/iosslider/slide1.png);
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+.iosSlider .slider .item2 .inner {
+	background-image: url(../../images/sliders/iosslider/slide2.png);
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+.iosSlider .slider .item3 .inner {
+	background-image: url(../../images/sliders/iosslider/slide3.png);
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+.iosSlider .slider .item4 .inner {
+	background-image: url(../../images/sliders/iosslider/slide4.png);
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+.sliderContainer .slideSelectors {
+	position: relative;
+	bottom: 35px;
+	left: 0;
+	width: 84px;
+	padding: 7px 7px;
+	margin: 0px 0px 0px 45%;
+	z-index: 1;
+	height: 10px;
+}
+.sliderContainer .slideSelectors .item {
+	float: left;
+	width: 11px;
+	height: 11px;
+	background: #c9c9c9;
+	margin: 0 0 0 5px;
+	border-radius: 10px
+}
+
+.sliderContainer .slideSelectors .selected {
+	background: #1889c1;
+	color: #fff;
+}
+
+
+
+
+
+@media only screen and (min-width: 1000px){}
+@media only screen and (min-width: 768px) and (max-width: 999px){
+
+.fluidHeight {
+	height: 340px;
+}
+
+.iosSlider {
+	height: 340px;
+}
+
+.iosSlider .slider .item .inner {
+	width: 767px;
+}
+
+.iosSlider .slider .item .inner .text1 {
+    top: 62px;
+}
+.iosSlider .slider .item .inner .text1 span {
+	font-size: 18px;
+}
+
+.iosSlider .slider .item .inner .text2 {
+    top: 90px;
+}
+.iosSlider .slider .item .inner .text2 span {
+	font-size: 27px;
+}
+
+.iosSlider .slider .item .inner .text3 {
+    top: 130px;
+}
+.iosSlider .slider .item .inner .text3 span {
+	font-size: 13px;
+	line-height: 22px;
+	padding: 18px 0px;
+}
+
+.iosSlider .slider .item .inner .text4 {
+    top: 250px;
+}
+
+.iosSlider .slider .item1 .inner {
+	background-image: url(../../images/sliders/iosslider/slide1.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 53%;
+}
+
+.iosSlider .slider .item2 .inner {
+	background-image: url(../../images/sliders/iosslider/slide2.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 53%;
+}
+
+.iosSlider .slider .item3 .inner {
+	background-image: url(../../images/sliders/iosslider/slide3.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 53%;
+}
+
+.iosSlider .slider .item4 .inner {
+	background-image: url(../../images/sliders/iosslider/slide4.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 53%;
+}
+
+.sliderContainer .slideSelectors {
+	margin: 0px 0px 0px 43%;
+}
+
+
+
+	
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+	
+.fluidHeight {
+	height: 250px;
+}
+
+.iosSlider {
+	height: 250px;
+}
+
+.iosSlider .slider .item .inner {
+	width: 479px;
+}
+
+.iosSlider .slider .item .inner .text1 {
+    top: 50px;
+}
+.iosSlider .slider .item .inner .text1 span {
+	font-size: 14px;
+}
+
+.iosSlider .slider .item .inner .text2 {
+    top: 70px;
+}
+.iosSlider .slider .item .inner .text2 span {
+	font-size: 22px;
+}
+
+.iosSlider .slider .item .inner .text3 {
+    top: 110px;
+}
+.iosSlider .slider .item .inner .text3 span {
+	font-size: 9px;
+	line-height: 18px;
+	padding: 10px 0px;
+}
+
+.iosSlider .slider .item .inner .text4 {
+    top: 200px;
+}
+
+.iosSlider .slider .item1 .inner {
+	background-image: url(../../images/sliders/iosslider/slide1.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 55%;
+}
+
+.iosSlider .slider .item2 .inner {
+	background-image: url(../../images/sliders/iosslider/slide2.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.iosSlider .slider .item3 .inner {
+	background-image: url(../../images/sliders/iosslider/slide3.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.iosSlider .slider .item4 .inner {
+	background-image: url(../../images/sliders/iosslider/slide4.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.sliderContainer .slideSelectors {
+	margin: 0px 0px 0px 43%;
+}
+
+	
+
+}
+
+
+@media only screen and (max-width: 479px){
+
+.fluidHeight {
+	height: 165px;
+}
+
+.iosSlider {
+	height: 165px;
+}
+
+.iosSlider .slider .item .inner {
+	width: 319px;
+}
+
+.iosSlider .slider .item .inner .text1 {
+    top: 30px;
+}
+.iosSlider .slider .item .inner .text1 span {
+	font-size: 11px;
+}
+
+.iosSlider .slider .item .inner .text2 {
+    top: 47px;
+}
+.iosSlider .slider .item .inner .text2 span {
+	font-size: 16px;
+}
+
+.iosSlider .slider .item .inner .text3 {
+    top: 75px;
+}
+.iosSlider .slider .item .inner .text3 span {
+	font-size: 7px;
+	line-height: 13px;
+	padding: 7px 0px;
+}
+
+.iosSlider .slider .item .inner .text4 {
+    top: 140px;
+}
+
+.iosSlider .slider .item1 .inner {
+	background-image: url(../../images/sliders/iosslider/slide1.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 55%;
+}
+
+.iosSlider .slider .item2 .inner {
+	background-image: url(../../images/sliders/iosslider/slide2.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.iosSlider .slider .item3 .inner {
+	background-image: url(../../images/sliders/iosslider/slide3.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.iosSlider .slider .item4 .inner {
+	background-image: url(../../images/sliders/iosslider/slide4.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: 58%;
+}
+
+.sliderContainer .slideSelectors {
+	margin: 0px 0px 0px 43%;
+	bottom: 25px;
+}
+
+
+}

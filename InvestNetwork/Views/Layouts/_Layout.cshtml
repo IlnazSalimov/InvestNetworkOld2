@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <!-- ######### CSS STYLES ######### -->
+    @RenderSection("Styles", false)
+
+    <link rel="stylesheet" href="~/Content/reset.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css" />
+    <link href="~/Content/additional-styles.css" rel="stylesheet" />
+
+    <!-- responsive devices styles -->
+    <link rel="stylesheet" media="screen" href="~/Content/responsive-leyouts.css" type="text/css" />
+
+    <!-- just remove the below comments witch color skin you want to use -->
+    <!--<link rel="stylesheet" href="~/colors/orange.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/lightgreen.css" />-->
+    <link rel="stylesheet" href="~/Content/colors/blue.css" />
+    <!--<link rel="stylesheet" href="~/Content/colors/green.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/red.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/cyan.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/purple.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/pink.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/colors/brown.css" />-->
+
+    <!-- just remove the below comments witch bg patterns you want to use -->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-default.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-one.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-two.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-three.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-four.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-five.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-six.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-seven.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-eight.css" />-->
+    <!--<link rel="stylesheet" href="~/Content/bg-patterns/pattern-nine.css" />-->
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="~/Scripts/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="~/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+
+    <link rel="stylesheet" href="~/Scripts/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Scripts/tabs/tabs.css" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/tabs/tabs-style2.css" type="text/css" />
+
+    <!-- style switcher -->
+    <link rel="stylesheet" media="screen" href="~/Scripts/style-switcher/color-switcher.css" />
+
+    <!-- REVOLUTION SLIDER -->
+    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/css/fullwidth.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/rs-plugin/css/settings.css" media="screen" />
+
+    <!-- jquery jcarousel -->
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jcarousel/skin.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jcarousel/skin2.css" />
+
+    <!-- Kendo UI 
+	<link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />-->
+	
+</head>
+<body>
+    <div class="site_wrapper">
+        <div class="container_full">
+
+            <div class="menu_sticky">
+
+                <div class="container">
+
+                    <div class="one_fourth">
+
+                        <ul class="top_social_links">
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                            <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="icon-youtube"></i></a></li>
+                            <li><a href="#"><i class="icon-flickr"></i></a></li>
+                            <li><a href="#"><i class="icon-rss"></i></a></li>
+                        </ul>
+
+                    </div>
+                    <!-- end top social icons -->
+
+                    <div class="three_fourth last">
+
+                        <nav id="access" class="access" role="navigation">
+
+                            <div id="menu" class="menu">
+
+                                <ul id="tiny">
+
+                                    <li>@Html.ActionLink("Проекты", "Discover", "Project")</li>
+
+                                    <li>@Html.ActionLink("Старт", "Start", "Project")</li>
+
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <li class="last"><a href="#">@User.Identity.Name</a>
+                                            <ul>
+                                                <li>@Html.ActionLink("Личный кабинет", "Index", "PrivateOffice")</li>
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
+                                                }
+                                                <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="last">
+                                            @Html.ActionLink("Войти", "Login", "Account")
+                                        </li>
+                                    }
+
+
+                                </ul>
+
+                            </div>
+
+                        </nav>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- end nav menu -->
+
+
+            @RenderSection("Header")
+
+        </div>
+        <!-- end top -->
+        <div class="clearfix"></div>
+
+        <div class="container">
+            @RenderBody()
+        </div>
+        <div class="clearfix mar_top5"></div>
+
+        <!-- Footer
+            ======================================= -->
+        <div class="footer">
+
+            <div class="clearfix mar_top4"></div>
+
+            <div class="container">
+
+                <div class="one_fourth">
+
+                    <div id="footer_logo">
+                        <h1>Avira <i>html template</i></h1>
+                    </div>
+
+                    <ul class="contact_address">
+                        <li><i class="icon-map-marker icon-large"></i>2901 Marmora Road, Glassgow,<br />
+                            &nbsp;&nbsp;&nbsp;Seattle, WA 98122-1090</li>
+                        <li><i class="icon-phone"></i>1 -234 -456 -7890</li>
+                        <li><i class="icon-print"></i>1 -234 -456 -7890</li>
+                        <li>
+                            <img src="~/images/footer-wmap.png" alt="" /></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="one_fourth">
+
+                    <h2>Useful <i>Links</i></h2>
+
+                    <ul class="list">
+                        <li><a href="#"><i class="icon-angle-right"></i>Home Page Variations</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Awsome Slidershows</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Features and Typography</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Different &amp; Unique Pages</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Single and Portfolios</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Recent Blogs or News</a></li>
+                        <li><a href="#"><i class="icon-angle-right"></i>Layered PSD Files</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="one_fourth">
+
+                    <div class="twitter_feed">
+
+                        <h2>Latest <i>Tweets</i></h2>
+
+                        <div class="left"><i class="icon-twitter icon-large"></i></div>
+                        <div class="right">
+                            <a href="https://twitter.com/gsrthemes9" target="_blank">gsrthemes9</a>: aoxhost - Responsive html5 Professional Hosting Theme<br />
+                            <a href="#" class="small">.9 days ago</a> .<a href="#" class="small">reply</a> .<a href="#" class="small">retweet</a> .<a href="#" class="small">favorite</a>
+                        </div>
+
+                        <div class="clearfix divider_line4"></div>
+
+                        <div class="left"><i class="icon-twitter icon-large"></i></div>
+                        <div class="right">
+                            <a href="https://twitter.com/gsrthemes9" target="_blank">gsrthemes9</a>: Kinvexy - Responsive HTML5 / CSS3, Professional Corporate Theme.<br />
+                            <a href="#" class="small">.8 days ago</a> .<a href="#" class="small">reply</a> .<a href="#" class="small">retweet</a> .<a href="#" class="small">favorite</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="one_fourth last">
+
+                    <h2>Flickr <i>Photos</i></h2>
+
+                    <div id="flickr_badge_wrapper">
+                        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=h&amp;source=user&amp;user=93382411%40N07"></script>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="clearfix mar_top2"></div>
+
+            <div class="container_full">
+                <div class="scrollup_area"><a href="#" class="scrollup">go Top</a></div>
+                <!-- end scroll to top of the page-->
+            </div>
+        </div>
+
+
+        <div class="copyright_info">
+
+            <div class="container">
+
+                <div class="three_fourth">
+
+                    <b>Copyright © 2013 avira.com. All rights reserved.  <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a></b>
+
+                </div>
+
+                <div class="one_fourth last">
+
+                    <ul class="footer_social_links">
+                        <li><a href="#"><i class="icon-facebook icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-google-plus icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-youtube icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-flickr icon-large"></i></a></li>
+                        <li><a href="#"><i class="icon-rss icon-large"></i></a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end copyright info -->
+
+    </div>
+
+
+    <!-- ######### JS FILES ######### -->
+
+
+    <!-- get jQuery from the google apis -->
+    <!--<script type="text/javascript" src="~/Scripts/universal/jquery.js"></script>-->
+
+    <!-- style switcher -->
+    <!--<script src="~/Scripts/style-switcher/jquery-1.js"></script>-->
+    <script src="~/Scripts/style-switcher/styleselector.js"></script>
+
+    <script src="~/Scripts/tabs/tabs.js"></script>
+    <script src="~/Scripts/tabs/tabs-style2.js"></script>
+    
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="~/Scripts/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script type="text/javascript" src="~/Scripts/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="~/Scripts/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <script type="text/javascript" src="~/Scripts/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="~/Scripts/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+    <!-- main menu -->
+    <script type="text/javascript" src="~/Scripts/mainmenu/ddsmoothmenu.js"></script>
+    <script type="text/javascript" src="~/Scripts/mainmenu/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/mainmenu/selectnav.js"></script>
+
+    <!-- jquery jcarousel -->
+    <script type="text/javascript" src="~/Scripts/jcarousel/jquery.jcarousel.min.js"></script>
+
+    <!-- REVOLUTION SLIDER -->
+    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/mainmenu/scripts.js"></script>
+
+    <!-- top show hide plugin script-->
+    <script src="~/Scripts/show-hide-plugin/showHide.js" type="text/javascript"></script>
+
+    <!-- Kendo UI
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.415/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2014.1.415/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2014.1.415/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>-->
+
+    <!-- scroll up -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+
+            $('.scrollup').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 500);
+                return false;
+            });
+
+        });
+    </script>
+
+    <!-- jquery intellisense-->
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+
+    <!-- jquery jcarousel -->
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            jQuery('#mycarousel').jcarousel();
+        });
+
+        jQuery(document).ready(function () {
+            jQuery('#mycarouseltwo').jcarousel();
+        });
+
+    </script>
+
+    <!-- accordion -->
+    <script type="text/javascript" src="~/Scripts/accordion/custom.js"></script>
+
+    <!-- REVOLUTION SLIDER -->
+    <script type="text/javascript">
+
+        var tpj = jQuery;
+        tpj.noConflict();
+
+        tpj(document).ready(function () {
+
+            if (tpj.fn.cssOriginal != undefined)
+                tpj.fn.css = tpj.fn.cssOriginal;
+
+            tpj('.fullwidthbanner').revolution(
+				{
+				    delay: 9000,
+				    startwidth: 1000,
+				    startheight: 500,
+
+				    onHoverStop: "on",						// Stop Banner Timet at Hover on Slide on/off
+
+				    thumbWidth: 100,							// Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+				    thumbHeight: 50,
+				    thumbAmount: 3,
+
+				    hideThumbs: 200,
+				    navigationType: "none",				// bullet, thumb, none
+				    navigationArrows: "solo",				// nexttobullets, solo (old name verticalcentered), none
+
+				    navigationStyle: "round",				// round,square,navbar,round-old,square-old,navbar-old, or any from the list in the docu (choose between 50+ different item), custom
+
+
+				    navigationHAlign: "right",				// Vertical Align top,center,bottom
+				    navigationVAlign: "bottom",					// Horizontal Align left,center,right
+				    navigationHOffset: 50,
+				    navigationVOffset: 55,
+
+				    soloArrowLeftHalign: "left",
+				    soloArrowLeftValign: "center",
+				    soloArrowLeftHOffset: 0,
+				    soloArrowLeftVOffset: 0,
+
+				    soloArrowRightHalign: "right",
+				    soloArrowRightValign: "center",
+				    soloArrowRightHOffset: 0,
+				    soloArrowRightVOffset: 0,
+
+				    touchenabled: "on",						// Enable Swipe Function : on/off
+
+
+
+				    stopAtSlide: -1,							// Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+				    stopAfterLoops: 0,						// Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+
+
+				    fullWidth: "on",
+
+				    shadow: 0								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows -  (No Shadow in Fullwidth Version !)
+
+				});
+
+
+        });
+    </script>
+    <!-- Scripts Section -->
+    @RenderSection("Scripts", false)
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+</body>
+</html>

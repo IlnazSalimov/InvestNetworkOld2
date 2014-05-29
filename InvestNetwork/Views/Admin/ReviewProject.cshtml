@@ -1,0 +1,103 @@
+﻿@using InvestNetwork.Application.Core;
+@using InvestNetwork.Core;
+@model Project
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@Model.Name</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+    <div class="portfolio_area">
+
+        <div class="portfolio_area_left">
+            <img src="@Model.LinkToImg" alt="">
+            <div class="mar_top3"></div>
+            <h3>О проекте</h3>
+            <div class="divider_line8"></div>
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+        </div>
+
+        <div class="portfolio_area_right">
+            @{
+                var isProjectOnReview = Model.Status == ProjectStatusEnum.OnReview;
+                var isProjectBlocked = Model.Status == ProjectStatusEnum.Blocked;
+                var isProjectActive = Model.Status == ProjectStatusEnum.Active;
+            }
+            <div class="project_details custom">
+                <h3>Детали проекта</h3>
+                <span><strong>Дата создания</strong> <em>@Model.CreateDate.ToString("d MMMM yyyy hh:mm")</em></span>
+                @if (isProjectActive)
+                {
+                    <span><strong>Дата начала инвестирования</strong> <em>@Model.StartDate.Value.ToString("d MMMM yyyy hh:mm")</em></span>
+                    <span><strong>Дата конца инвестирования</strong> <em>@Model.EndDate.Value.ToString("d MMMM yyyy hh:mm")</em></span>
+                    <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                }
+                <span><strong>Статус</strong> <em>@Model.ProjectStatus.Status</em></span>
+                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.Value.ToString("C0")</em></span>
+                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
+                <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
+                <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
+                <div class="clearfix mar_top3"></div>
+
+                <ul class="list_empty">
+                    @if (!Model.IsInspected && isProjectActive)
+                    {
+                        <li>
+                            <a href="@Url.Action("ApproveProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-ok icon-large"></i> Одобрить</a>
+                        </li>
+                    }
+
+                    @if (isProjectOnReview || isProjectBlocked)
+                    {
+                        <li>
+                            <a href="@Url.Action("PublishProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-check icon-large"></i> Публиковать</a>
+                        </li>
+                    }
+                    @if (isProjectOnReview || isProjectActive)
+                    {
+                        <li>
+                            <a class="but_lock block"><i class="icon-lock icon-large"></i> Заблокировать</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var baseUrl = '@Url.Content("~/")';
+        (function () {
+            $(".block").bind("click", function () {
+                debugger;
+                $.ajax({
+                    type: 'GET',
+                    url: baseUrl + "Api/Admin/BlockProject/" + '@Model.ID',
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function () {
+                        console.log("Error");
+                    },
+                    dataType: "json"
+                });
+            });
+        })();
+    </script>
+    }

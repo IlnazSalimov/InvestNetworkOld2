@@ -1,0 +1,88 @@
+﻿@model InvestNetwork.Core.ProjectStart
+
+@{
+    ViewBag.Title = "Создание проекта";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+}
+<div class="content_fullwidth">
+    <div class="one_full">
+        @using (Html.BeginForm("Start", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(false)
+            <fieldset>
+                <div class="accrodation">
+                    <h2>Встречайте, <strong>ваш новый проект</strong></h2>
+
+                    <div class="punchline_text_box">
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.Name)</strong></div>
+                            <div class="join_element">
+                                @Html.EditorFor(model => model.Name)
+                            </div>
+                        </div>
+
+                        @Html.Partial("_ScopeSelecting", Model)
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.ShortDescription)</strong></div>
+                            <div class="join_element">
+                                @Html.TextAreaFor(model => model.ShortDescription)
+                                <p>Если бы вам пришлось описать свой проект в одном твите, как бы вы это сделали?</p>
+                            </div>
+                        </div>
+
+                        @Html.Partial("_LocationSelecting", Model)
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.FundingDuration)</strong></div>
+                            <div class="join_element">
+                                @Html.EditorFor(model => model.FundingDuration,
+                            new
+                            {
+                                min = (int)InvestNetwork.Core.FundingDurationRanges.Min,
+                                max = (int)InvestNetwork.Core.FundingDurationRanges.Max,
+
+                            })
+                                <p>
+                                    От 1 до 60 дней. Мы рекомендуем выбрать 30 дней или меньше. Более короткая продолжительность 
+                                   имеет более высокие показатели успеха, и создаст полезное ощущение срочности вокруг вашего проекта.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="join_row">
+                            <div class="join_label"><strong>@Html.LabelFor(model => model.NecessaryFunding)</strong></div>
+                            <div class="join_element">
+                                @Html.EditorFor(model => model.NecessaryFunding)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix mar_top3"></div>
+
+                    <div class="join_row">
+                        <input type="submit" value="Создать" />
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
