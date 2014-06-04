@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу статусам проекта
+    /// </summary>
     public class ProjectStatusRepository : IProjectStatusRepository
     {
         private IRepository<ProjectStatus> projectStatusRepository;

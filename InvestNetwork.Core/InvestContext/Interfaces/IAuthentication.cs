@@ -9,19 +9,34 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет основной интерфейс аутентификационных инструментов
+    /// </summary>
     public interface IAuthentication
     {
         /// <summary>
-        /// Конекст (тут мы получаем доступ к запросу и кукисам)
+        /// Инкапсулирует все конкретных HTTP-сведения об индивидуальном запросе HTTP.
         /// </summary>
         HttpContext HttpContext { get; set; }
 
+        /// <summary>
+        /// Производит аутентификацую пользователя
+        /// </summary>
         User Login(string login, string password, bool isPersistent);
 
+        /// <summary>
+        /// Производит аутентификацую пользователя
+        /// </summary>
         User Login(string login);
 
+        /// <summary>
+        /// Производит очистку  аутентификационных данных текущего ползователя из Cookie
+        /// </summary>
         void LogOut();
 
+        /// <summary>
+        /// Возвращает текущего аутентифицированного пользователя
+        /// </summary>
         IPrincipal CurrentUser { get; }
     }
 }

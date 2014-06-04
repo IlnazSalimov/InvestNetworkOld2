@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу комментариев, написанных к новости проекта
+    /// </summary>
     public class ProjectNewsCommentsRepository : IProjectNewsCommentsRepository
     {
         private IRepository<ProjectNewsComment> projectNewsCommentRepository;

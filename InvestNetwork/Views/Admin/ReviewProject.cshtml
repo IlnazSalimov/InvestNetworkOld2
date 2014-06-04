@@ -56,14 +56,14 @@
                     @if (!Model.IsInspected && isProjectActive)
                     {
                         <li>
-                            <a href="@Url.Action("ApproveProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-ok icon-large"></i> Одобрить</a>
+                            <a class="but_star ispect"><i class="icon-ok icon-large"></i> Одобрить</a>
                         </li>
                     }
 
                     @if (isProjectOnReview || isProjectBlocked)
                     {
                         <li>
-                            <a href="@Url.Action("PublishProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-check icon-large"></i> Публиковать</a>
+                            <a class="but_star publish"><i class="icon-check icon-large"></i> Публиковать</a>
                         </li>
                     }
                     @if (isProjectOnReview || isProjectActive)
@@ -82,13 +82,14 @@
 
 @section Scripts{
     <script>
-        var baseUrl = '@Url.Content("~/")';
+    var baseUrl = '@Url.Content("~/")';
         (function () {
             $(".block").bind("click", function () {
                 debugger;
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl + "Api/Admin/BlockProject/" + '@Model.ID',
+                    url: baseUrl + "Api/Admin/SetProjectStatus",
+                    data: { id: '@Model.ID', status: "blocked" },
                     success: function (response) {
                         console.log(response);
                     },
@@ -98,6 +99,37 @@
                     dataType: "json"
                 });
             });
-        })();
+
+            $(".ispect").bind("click", function () {
+                debugger;
+                $.ajax({
+                    type: 'GET',
+                    url: baseUrl + "Api/Admin/Inpect/" + '@Model.ID',
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function () {
+                    console.log("Error");
+                },
+                dataType: "json"
+            });
+        });
+
+        $(".publish").bind("click", function () {
+            debugger;
+            $.ajax({
+                type: 'GET',
+                url: baseUrl + "Api/Admin/SetProjectStatus",
+                data: { id: '@Model.ID', status: "active" },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function () {
+                    console.log("Error");
+                },
+                dataType: "json"
+            });
+        });
+    })();
     </script>
     }

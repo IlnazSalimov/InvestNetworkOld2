@@ -9,18 +9,37 @@ using InvestNetwork.Core;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы обеспечивающие аутентификационную деятельность пользователя
+    /// </summary>
     public class CustomAuthentication : IAuthentication
     {
-
+        /// <summary>
+        /// Название аутентификационного cookie, в котором будет храниться данные о текущем аутентифицированном пользователе
+        /// </summary>
         private const string cookieName = "__AUTH_COOKIE";
 
+        /// <summary>
+        /// Инкапсулирует все конкретных HTTP-сведения об индивидуальном запросе HTTP.
+        /// </summary>
         public HttpContext HttpContext { get; set; }
 
+        /// <summary>
+        /// Предоставляет доступ к хранилищу пользователей.
+        /// </summary>
         [Inject]
         public IUserRepository _userRepository { get; set; }
 
         #region IAuthentication Members
 
+        /// <summary>
+        /// Производит аутентификацую пользователя
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="Password">Пароль пользователя</param>
+        /// <param name="isPersistent">true , если билет будет храниться с постоянным файлом Cookie (сохраняемым между сеансами браузера);
+        /// в противном случае — false. Если билет хранится в URL-адресе, это значение игнорируется.</param>
+        /// <returns>аутентифицированный пользователь</returns>
         public User Login(string userName, string Password, bool isPersistent)
         {
             User retUser = _userRepository.Login(userName, Password);
@@ -41,6 +60,12 @@ namespace InvestNetwork.Core
             return retUser;
         }
 
+        /// <summary>
+        /// Создает аутентификационные данные в Cookie
+        /// </summary>
+        /// <param name="userName">Имя пользователя, связанное с билетом. </param>
+        /// <param name="isPersistent">true , если билет будет храниться с постоянным файлом Cookie (сохраняемым между сеансами браузера);
+        /// в противном случае — false. Если билет хранится в URL-адресе, это значение игнорируется.</param>
         private void CreateCookie(string userName, bool isPersistent = false)
         {
             var ticket = new FormsAuthenticationTicket(
@@ -64,6 +89,9 @@ namespace InvestNetwork.Core
             HttpContext.Response.Cookies.Set(AuthCookie);
         }
 
+        /// <summary>
+        /// Производит очистку  аутентификационных данных текущего ползователя из Cookie
+        /// </summary>
         public void LogOut()
         {
             var httpCookie = HttpContext.Response.Cookies[cookieName];
@@ -75,6 +103,9 @@ namespace InvestNetwork.Core
 
         private IPrincipal _currentUser;
 
+        /// <summary>
+        /// Возвращает текущего аутентифицированного пользователя
+        /// </summary>
         public IPrincipal CurrentUser
         {
             get

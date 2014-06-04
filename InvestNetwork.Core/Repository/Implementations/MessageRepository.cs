@@ -8,6 +8,9 @@ using System.Linq.Expressions;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу сообщений
+    /// </summary>
     public class MessageRepository : IMessageRepository
     {
         private IRepository<Message> messageRepository;

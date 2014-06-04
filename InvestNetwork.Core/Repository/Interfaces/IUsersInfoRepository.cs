@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяют методы, которые предоставляют доступ к хранилищу информации пользователя
+    /// </summary>
     public interface IUsersInfoRepository
     {
         UsersInfo GetById(int id);

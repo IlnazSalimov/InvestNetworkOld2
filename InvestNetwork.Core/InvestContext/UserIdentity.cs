@@ -7,6 +7,9 @@ using Ninject;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяет основную функциональность объекта, удостоверяющего личность.
+    /// </summary>
     public class UserIndentity : IIdentity, IUserProvider
     {
         /// <summary>
@@ -14,9 +17,15 @@ namespace InvestNetwork.Core
         /// </summary>
         public User User { get; set; }
 
+        /// <summary>
+        /// Аутентификационная служба
+        /// </summary>
         [Inject]
         public IAuthentication Auth { get; set; }
 
+        /// <summary>
+        /// Текущий аутентифицированный пользователь
+        /// </summary>
         public User CurrentUser
         {
             get
@@ -25,6 +34,9 @@ namespace InvestNetwork.Core
             }
         }
 
+        /// <summary>
+        /// Получает используемый тип аутентификации.
+        /// </summary>
         public string AuthenticationType
         {
             get
@@ -33,6 +45,9 @@ namespace InvestNetwork.Core
             }
         }
 
+        /// <summary>
+        /// Получает значение, указывающее, произвел ли пользователь проверку подлинности.
+        /// </summary>
         public bool IsAuthenticated
         {
             get
@@ -41,6 +56,9 @@ namespace InvestNetwork.Core
             }
         }
 
+        /// <summary>
+        /// Имя текущего пользователя
+        /// </summary>
         public string Name
         {
             get
@@ -54,6 +72,11 @@ namespace InvestNetwork.Core
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="repository"></param>
         public void Init(string email, IUserRepository repository)
         {
             if (!string.IsNullOrEmpty(email))

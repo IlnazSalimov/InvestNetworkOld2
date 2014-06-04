@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу городов
+    /// </summary>
     public class CityRepository : ICityRepository
     {
         private IRepository<City> cityRepository;

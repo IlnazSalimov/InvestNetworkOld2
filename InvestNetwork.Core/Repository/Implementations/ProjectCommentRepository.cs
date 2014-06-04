@@ -8,6 +8,9 @@ using System.Linq.Expressions;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу комментариев проекта
+    /// </summary>
     public class ProjectCommentRepository : IProjectCommentRepository
     {
         private IRepository<ProjectComment> projectCommentRepository;

@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу ролей
+    /// </summary>
     public class RoleRepository : IRoleRepository
     {
         private IRepository<Role> roleRepository;

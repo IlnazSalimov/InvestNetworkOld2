@@ -6,6 +6,8 @@ namespace InvestNetwork
 {
     public class FilterConfig
     {
+        /// <summary>
+        /// Регестрирует все глобальные фильтры </summary>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new CustomHandleError(), 1);

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяют методы, которые предоставляют доступ к хранилищу статусов проекта
+    /// </summary>
     public interface IProjectStatusRepository
     {
         IQueryable<ProjectStatus> GetAll();

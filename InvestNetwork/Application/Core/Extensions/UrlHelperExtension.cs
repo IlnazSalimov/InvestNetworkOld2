@@ -7,6 +7,10 @@ namespace InvestNetwork.Application.Core
 {
     public static class UrlHelperExtension
     {
+        /// <summary>  
+        /// Конвертирует относительную ссылку в абсолютную</summary>  
+        /// <param name="relativeUrl">Относительная ссылка.</param>
+        /// <returns>Абсолютная ссылка.</returns>
         public static string Absolute(this System.Web.Mvc.UrlHelper url, string relativeUrl)
         {
             var request = url.RequestContext.HttpContext.Request;
@@ -17,6 +21,10 @@ namespace InvestNetwork.Application.Core
                 VirtualPathUtility.ToAbsolute(relativeUrl));
         }
 
+        /// <summary>  
+        /// Конвертирует относительную ссылку в абсолютную</summary>  
+        /// <param name="relativeUrl">Относительная ссылка.</param>
+        /// <returns>Абсолютная ссылка.</returns>
         public static string Absolute(this System.Web.Http.Routing.UrlHelper url, string relativeUrl)
         {
             var request = System.Web.HttpContext.Current.Request;

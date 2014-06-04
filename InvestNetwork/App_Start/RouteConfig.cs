@@ -9,6 +9,8 @@ namespace InvestNetwork
 {
     public class RouteConfig
     {
+        /// <summary>
+        /// Регестрирует маршруты </summary>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
