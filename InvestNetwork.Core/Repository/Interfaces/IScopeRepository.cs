@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяют методы, которые предоставляют доступ к хранилищу сфер деятельности
+    /// </summary>
     public interface IScopeRepository
     {
         IQueryable<Scope> GetAll();

@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяет основные методы доступа к хранилищам
+    /// </summary>
+    /// <typeparam name="TEntity">Тип репозитория</typeparam>
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
         IQueryable<TEntity> GetAll();

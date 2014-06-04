@@ -11,7 +11,7 @@ using InvestNetwork.Application.Core;
 namespace InvestNetwork.Api
 {
     /// <summary>
-    /// Предоставляет api методы, которые отвечают за бизнес логику административной части </summary>
+    /// Предоставляет методы, которые отвечают за бизнес логику административной части </summary>
     /// <remarks>Предоставляет доступ только пользователям с ролью Admin</remarks>
     [Authorize(Roles = "Admin")]
     public class AdminController : ApiController
@@ -28,19 +28,32 @@ namespace InvestNetwork.Api
         /// Инициализирует новый экземпляр AdminController с внедрением зависемостей к хранилищу проектов.</summary>  
         /// <param name="projectRepository">Экземпляр класса ProjectRepository, предоставляющий доступ к хранилищу данных о проектах.</param>
         /// <param name="projectStatusRepository">Экземпляр класса ProjectRepository, предоставляющий доступ к хранилищу данных о статусах проектах</param>
-        /// <returns>Новый экземпляр AdminController.</returns>
         public AdminController(IProjectRepository projectRepository, IMapper mapper)
         {
              this._modelMapper = mapper;
             this._projectRepository = projectRepository;
         }
 
+        private ProjectStatusEnum ConvertStatusToEnum(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "active": return ProjectStatusEnum.Active; break;
+                case "blocked": return ProjectStatusEnum.Blocked; break;
+                case "inactive": return ProjectStatusEnum.Inactive; break;
+                case "onreview": return ProjectStatusEnum.OnReview; break;
+                case "uncreated": return ProjectStatusEnum.Uncreated; break;
+                default: return 0;
+            }
+        }
+
         /// <summary>  
-        /// Метод отвечающий за бизнес логику блокировки проекта с заданным идентификатором.</summary>
+        /// Метод отвечающий за бизнес логику изменения статуса проекта с заданным идентификатором.</summary>
         /// <param name="id">Идентификатор проекта</param>
+        /// <param name="status">Устанавливаемы статус проекта</param>
         /// <returns>Экземпляр HttpResponseMessage с результатом.</returns>
-        [HttpGet]
-        public HttpResponseMessage BlockProject(int id)
+        [HttpPost]
+        public HttpResponseMessage SetProjectStatus(int id, string status)
         {
             Project reviewingProject = _projectRepository.GetById(id);
             if (reviewingProject == null)
@@ -49,7 +62,15 @@ namespace InvestNetwork.Api
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message);
             }
 
-            reviewingProject.Status = ProjectStatusEnum.Blocked;
+            ProjectStatusEnum projectStatus = ConvertStatusToEnum(status);
+
+            if (projectStatus == 0)
+            {
+                var message = string.Format("Статуса \"{0}\" не существует", status);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message);
+            }
+
+            reviewingProject.Status = projectStatus;
             reviewingProject.IsInspected = true;
              
             try
@@ -61,20 +82,18 @@ namespace InvestNetwork.Api
                 var message = string.Format("Во время сохранении проекта с id = {0} произошла ошибка", id);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message);
             }
-            /*HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Moved);
-            string relativeUrl = Url.Route("Default", new { controller = "Admin", action = "ReviewProject", id = id });
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Moved);
+            string relativeUrl = Url.Route("Default", new { controller = "Admin", action = "GetInspectingProjects"});
             response.Headers.Location = new Uri(Url.Absolute(relativeUrl));
-            throw new HttpResponseException(response);*/
-
-            return Request.CreateResponse(HttpStatusCode.OK, _modelMapper.Map(reviewingProject, typeof(Project), typeof(ProjectDTO)) as ProjectDTO);
+            throw new HttpResponseException(response);
         }
 
         /// <summary>  
-        /// Метод отвечающий за бизнес логику публикации проекта с заданным идентификатором.</summary>
+        /// Метод отвечающий за бизнес логику инспекции проекта с заданным идентификатором.</summary>
         /// <param name="id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
+        /// <returns>Экземпляр HttpResponseMessage с результатом.</returns>
         [HttpGet]
-        public HttpResponseMessage PublishProject(int id)
+        public HttpResponseMessage Inpect(int id)
         {
             Project reviewingProject = _projectRepository.GetById(id);
             if (reviewingProject == null)
@@ -83,7 +102,6 @@ namespace InvestNetwork.Api
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message);
             }
 
-            reviewingProject.Status = ProjectStatusEnum.Blocked;
             reviewingProject.IsInspected = true;
 
             try
@@ -95,37 +113,11 @@ namespace InvestNetwork.Api
                 var message = string.Format("Во время сохранении проекта с id = {0} произошла ошибка", id);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message);
             }
-            /*HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Moved);
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Moved);
             string relativeUrl = Url.Route("Default", new { controller = "Admin", action = "ReviewProject", id = id });
             response.Headers.Location = new Uri(Url.Absolute(relativeUrl));
-            throw new HttpResponseException(response);*/
-
-            return Request.CreateResponse(HttpStatusCode.OK, _modelMapper.Map(reviewingProject, typeof(Project), typeof(ProjectDTO)) as ProjectDTO);
+            throw new HttpResponseException(response);
         }
 
-        /// <summary>  
-        /// Метод отвечающий за бизнес логику публикации проекта с заданным идентификатором.</summary>
-        /// <param name="Id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
-        /*public ActionResult PublishProject(int Id)
-        {
-            Project reviewingProject = _projectRepository.GetById(Id);
-            reviewingProject.Status = ProjectStatusEnum.Active;
-            reviewingProject.IsInspected = true;
-            _projectRepository.SaveChanges();
-            return RedirectToAction("ReviewProject", new { Id = Id });
-        }
-
-        /// <summary>  
-        /// Метод отвечающий за бизнес логику одобрения проекта с заданным идентификатором.</summary>
-        /// <param name="Id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
-        public ActionResult ApproveProject(int Id)
-        {
-            Project reviewingProject = _projectRepository.GetById(Id);
-            reviewingProject.IsInspected = true;
-            _projectRepository.SaveChanges();
-            return RedirectToAction("ReviewProject", new { Id = Id });
-        }*/
     }
 }

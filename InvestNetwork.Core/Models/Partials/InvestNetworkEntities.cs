@@ -7,7 +7,7 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
-    public partial class InvestNetworkEntities: IDataContext
+    public partial class InvestNetworkEntities : IDataContext
     {
         DbEntityEntry<TEntity> IDataContext.Entry<TEntity>(TEntity entity)
         {

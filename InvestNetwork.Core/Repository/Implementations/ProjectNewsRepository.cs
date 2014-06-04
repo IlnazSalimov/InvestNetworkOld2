@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу новостей проекта
+    /// </summary>
     public class ProjectNewsRepository : IProjectNewsRepository
     {
         private IRepository<ProjectNew> projectNewsRepository;

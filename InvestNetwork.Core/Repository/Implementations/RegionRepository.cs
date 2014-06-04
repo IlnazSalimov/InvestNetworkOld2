@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу регионов
+    /// </summary>
     public class RegionRepository:IRegionRepository
     {
         private IRepository<Region> regionRepository;

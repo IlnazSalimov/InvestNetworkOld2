@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяют методы, которые предоставляют доступ к хранилищу городов
+    /// </summary>
     public interface ICityRepository
     {
         IQueryable<City> GetAll();

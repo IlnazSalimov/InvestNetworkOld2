@@ -12,19 +12,39 @@ using System.Web.UI;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Инкапсулирует сведения и предоставляет доступ к системным данным и службам приложения.
+    /// </summary>
     public class InvestContext : IInvestContext
     {
+        /// <summary>
+        /// Название аутентификационного cookie, в котором будет храниться данные о текущем аутентифицированном пользователе
+        /// </summary>
         private const string COOKIENAME = "__AUTH_COOKIE";
         
+        /// <summary>
+        /// Аутентификационная служба
+        /// </summary>
         public IAuthentication Auth { get; set; }
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу пользователей.
+        /// </summary>
         private IUserRepository _userRepository;
 
+        /// <summary>  
+        /// Инициализирует новый экземпляр InvestContext с внедрением зависемостей к хранилищу пользователей и с аутентификационной службой.</summary>  
+        /// <param name="userRepository">Экземпляр класса UserRepository, предоставляющий доступ к хранилищу пользователей.</param>
+        /// <param name="authentication">аутентификационная служба</param>
         public InvestContext(IUserRepository userRepository, IAuthentication authentication)
         {
             this._userRepository = userRepository;
             this.Auth = DependencyResolver.Current.GetService<IAuthentication>();
         }
 
+        /// <summary>
+        /// Возвращает текущего аутентифицированного пользователя
+        /// </summary>
         public User CurrentUser
         {
             get

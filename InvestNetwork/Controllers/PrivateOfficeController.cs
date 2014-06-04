@@ -52,7 +52,7 @@ namespace InvestNetwork.Controllers
                                        IMessageRepository messageRepository, IProjectRepository projectRepository,
                                        IInvestContext investContext)
         {
-            _userRepository = userRepository;
+            _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
             _usersInfoRepository = usersInfoRepository;
             _messageRepository = messageRepository;
             _projectRepository = projectRepository;

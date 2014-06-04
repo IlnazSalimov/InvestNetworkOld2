@@ -16,7 +16,7 @@ namespace InvestNetwork.Core.App_Start
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Starts the application
+        /// Старт приложения
         /// </summary>
         public static void Start() 
         {
@@ -26,7 +26,7 @@ namespace InvestNetwork.Core.App_Start
         }
         
         /// <summary>
-        /// Stops the application.
+        /// Остановка приложения.
         /// </summary>
         public static void Stop()
         {
@@ -34,9 +34,9 @@ namespace InvestNetwork.Core.App_Start
         }
         
         /// <summary>
-        /// Creates the kernel that will manage your application.
+        /// Создает ядро, которое будет управлять приложением.
         /// </summary>
-        /// <returns>The created kernel.</returns>
+        /// <returns>Созданное ядро.</returns>
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
@@ -56,9 +56,9 @@ namespace InvestNetwork.Core.App_Start
         }
 
         /// <summary>
-        /// Load your modules or register your services here!
+        /// Загружать модули или регистрируйте свои службы здесь!
         /// </summary>
-        /// <param name="kernel">The kernel.</param>
+        /// <param name="kernel">Ядро.</param>
         private static void RegisterServices(IKernel kernel)
         {
         }        

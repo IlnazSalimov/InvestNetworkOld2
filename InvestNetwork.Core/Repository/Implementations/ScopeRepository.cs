@@ -5,6 +5,9 @@ using System.Web;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу сфер деятельности
+    /// </summary>
     public class ScopeRepository : IScopeRepository
     {
         private IRepository<Scope> scopeRepository;

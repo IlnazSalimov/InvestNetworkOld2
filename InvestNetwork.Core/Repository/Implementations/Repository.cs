@@ -6,9 +6,9 @@ using System.Linq;
 namespace InvestNetwork.Core
 {
     /// <summary>
-    /// Базовый класс для всех классов модели приложения, предоставляющие основные методы действий для них
+    /// Базовый класс для всех классов-наследников модели приложения, предоставляющие основные методы доступа к хранилищам
     /// </summary>
-    /// <param name="TEntity">Класс, являющийся типом модели, к которому будет запрошен доступ</param>
+    /// <param name="TEntity">Тип репозитория</param>
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         /// <summary>

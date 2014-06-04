@@ -11,8 +11,14 @@ using System.Web.Http;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы конфигурации разрешения зависемостей
+    /// </summary>
     public class DependencyConfigure
     {
+        /// <summary>
+        /// Инициализация и конфигурирование контейнера IoC. Регистрация зависемостей.
+        /// </summary>
         public static void Initialize()
         {
             IKernel kernel = new StandardKernel();

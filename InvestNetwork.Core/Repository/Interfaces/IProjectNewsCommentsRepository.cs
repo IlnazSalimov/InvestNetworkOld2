@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Определяют методы, которые предоставляют доступ к хранилищу комментариев, написанных к новости проекта
+    /// </summary>
     public interface IProjectNewsCommentsRepository
     {
         List<ProjectNewsComment> GetAll();

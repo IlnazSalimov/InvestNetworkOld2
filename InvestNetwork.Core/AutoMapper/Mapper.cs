@@ -11,9 +11,16 @@ namespace InvestNetwork.Core
 {
     public class CommonMapper : IMapper
     {
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о статусах проекта.</summary>
         private static IProjectStatusRepository _projectStatusRepository = DependencyResolver.Current.GetService<IProjectStatusRepository>();
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о списке сфер деятельности.</summary>
         private static IScopeRepository _scopeRepository = DependencyResolver.Current.GetService<IScopeRepository>();
 
+        /// <summary>
+        /// Инициализирует новый экземпляр CommonMapper.</summary>
         static CommonMapper()
         {
             Mapper.CreateMap<Project, ProjectDTO>().
@@ -24,6 +31,12 @@ namespace InvestNetwork.Core
                 ForMember(dto => dto.FundingDuration, mpe => mpe.MapFrom(p => p.FundingDuration.HasValue ? p.FundingDuration.Value : 0));
         }
 
+        /// <summary>
+        /// Выполняет отображение исходного объекта в новый объект назначения.</summary>
+        /// <param name="source">Объект-источник данных для отображения</param>
+        /// <param name="sourceType">Тип объекта-источника(использование)</param>
+        /// <param name="sourceType">Тип объекта-назначения(создание)</param>
+        /// <returns>Отображенный объект назначения</returns>
         public object Map(object source, Type sourceType, Type destinationType)
         {
             return Mapper.Map(source, sourceType, destinationType);

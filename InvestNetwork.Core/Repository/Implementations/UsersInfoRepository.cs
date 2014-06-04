@@ -9,6 +9,9 @@ using System.Linq.Expressions;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Предоставляет методы, которые предоставляют доступ к хранилищу информации пользователя
+    /// </summary>
     public class UsersInfoRepository : IUsersInfoRepository
     {
         private IRepository<UsersInfo> usersInfoRepository;
