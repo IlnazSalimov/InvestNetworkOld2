@@ -35,7 +35,7 @@ namespace InvestNetwork.Core
             return usersInfoRepository.GetById(id);
         }
 
-        public IQueryable<PartycipationUsersInfo> GetPartycipation(int id)
+        public List<PartycipationUsersInfo> GetPartycipation(int id)
         {
             List<Payment> payments = paymentRepository.GetAll().Where(e => e.UserID == id).ToList();
 
@@ -59,7 +59,7 @@ namespace InvestNetwork.Core
                 participations.Add(partycipation);
             }
 
-            return participations.AsQueryable();
+            return participations;
         }
 
         public UsersInfo GetByUserId(int id)

@@ -10,7 +10,7 @@ namespace InvestNetwork.Core
     {
         IQueryable<Message> GetAll();
         Message GetById(int id);
-        IQueryable<Message> GetByUserId(int id);
+        List<Message> GetByUserId(int id);
         void Insert(Message model);
         void Update(Message model);
         void Delete(Message model);

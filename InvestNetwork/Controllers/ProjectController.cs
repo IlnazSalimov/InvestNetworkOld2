@@ -155,16 +155,16 @@ namespace InvestNetwork.Controllers
         /// <remarks>Метод используется для обработки POST запросов. Предоставляет доступ только авторизованным пользователям</remarks>
         [Authorize]
         [HttpPost]
-        public ActionResult CompleteSecondStepOfStart(ProjectStartingSecondStep model, HttpPostedFileBase ProjectImg)
+        public ActionResult CompleteSecondStepOfStart(ProjectStartingSecondStep model, HttpPostedFileBase LinkToImg)
         {
-            if (ModelState.IsValid && (ProjectImg != null && ProjectImg.ContentLength > 0))
+            if (ModelState.IsValid && (LinkToImg != null && LinkToImg.ContentLength > 0))
             {
                 Project fillingProject = _projectRepository.GetById(model.ProjectID);
                 fillingProject.Description = model.Description;
                 fillingProject.Status = ProjectStatusEnum.Active;
                 fillingProject.StartDate = DateTime.Now;
                 fillingProject.EndDate = fillingProject.StartDate.Value.AddDays((int)fillingProject.FundingDuration.Value);
-                fillingProject.LinkToImg = FileUploader.Upload(ProjectImg, fillingProject.ProjectFilesDirectory);
+                fillingProject.LinkToImg = FileUploader.Upload(LinkToImg, fillingProject.ProjectFilesDirectory);
                 
                 _projectRepository.SaveChanges();
 

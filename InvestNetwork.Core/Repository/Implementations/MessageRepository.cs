@@ -30,11 +30,11 @@ namespace InvestNetwork.Core
             return messageRepository.GetById(id);
         }
 
-        public IQueryable<Message> GetByUserId(int id)
+        public List<Message> GetByUserId(int id)
         {
             if (id == 0)
                 return null;
-            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderByDescending(e => e.MessageDate);
+            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderByDescending(e => e.MessageDate).ToList();
             foreach(Message message in list)
             {
                 message.User = userRepository.GetById(message.FromUserID);
