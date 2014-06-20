@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -50,9 +51,9 @@ namespace InvestNetwork.Application.Core
             return builder;
         }
 
-        private static TagBuilder GetProjectImgBuilder(int projectId, bool wrapToLink = false, bool isLinkToAdminView = false, int? optionalHeight = null, int? optionalWidth = null, object optionalHtmlAttributes = null)
+        private static async Task<TagBuilder> GetProjectImgBuilder(int projectId, bool wrapToLink = false, bool isLinkToAdminView = false, int? optionalHeight = null, int? optionalWidth = null, object optionalHtmlAttributes = null)
         {
-            Project project = _projectRepository.GetById(projectId);
+            Project project = await _projectRepository.GetByIdAsync(projectId);
             if (project == null)
                 return new TagBuilder(String.Empty);
             TagBuilder builder = new TagBuilder("img");
@@ -64,7 +65,7 @@ namespace InvestNetwork.Application.Core
                 builder.MergeAttributes(new RouteValueDictionary(optionalHtmlAttributes));
             
             if (wrapToLink){
-                TagBuilder wrapper = GetProjectLinkBuilder(projectId, null, isLinkToAdminView);
+                TagBuilder wrapper = GetProjectLinkBuilder(projectId, null, isLinkToAdminView).Result;
                 wrapper.InnerHtml = builder.ToString(TagRenderMode.SelfClosing);
                 return wrapper;
             }
@@ -95,9 +96,9 @@ namespace InvestNetwork.Application.Core
             return builder;
         }
 
-        private static TagBuilder GetProjectLinkBuilder(int projectId, object optionalHtmlAttributes = null, bool isLinkToAdminView = false)
+        private static async Task<TagBuilder> GetProjectLinkBuilder(int projectId, object optionalHtmlAttributes = null, bool isLinkToAdminView = false)
         {
-            Project project = _projectRepository.GetById(projectId);
+            Project project = await _projectRepository.GetByIdAsync(projectId);
             if (project == null)
                 return new TagBuilder(String.Empty);
             TagBuilder builder = new TagBuilder("a");
@@ -142,7 +143,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который визуализирует изображение проекта.</returns>
         public static MvcHtmlString ProjectImage(this HtmlHelper helper, int projectId)
         {
-            TagBuilder builder = GetProjectImgBuilder(projectId);
+            TagBuilder builder = GetProjectImgBuilder(projectId).Result;
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.SelfClosing));
         }
@@ -156,7 +157,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который визуализирует изображение проекта.</returns>
         public static MvcHtmlString ProjectImage(this HtmlHelper helper, int projectId, bool wrapToLink, bool isLinkToAdminView)
         {
-            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView);
+            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView).Result;
 
             return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
         }
@@ -174,7 +175,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который визуализирует изображение проекта.</returns>
         public static MvcHtmlString ProjectImage(this HtmlHelper helper, int projectId, bool wrapToLink, bool isLinkToAdminView, object htmlAttributes)
         {
-            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, null, null, htmlAttributes);
+            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, null, null, htmlAttributes).Result;
 
             return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
         }
@@ -191,7 +192,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который визуализирует изображение проекта.</returns>
         public static MvcHtmlString ProjectImage(this HtmlHelper helper, int projectId, bool wrapToLink, bool isLinkToAdminView, int height, int width)
         {
-            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, height, width);
+            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, height, width).Result;
 
             return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
         }
@@ -208,7 +209,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который визуализирует изображение проекта.</returns>
         public static MvcHtmlString ProjectImage(this HtmlHelper helper, int projectId, bool wrapToLink, bool isLinkToAdminView, int height, int width, object htmlAttributes)
         {
-            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, height, width, htmlAttributes);
+            TagBuilder builder = GetProjectImgBuilder(projectId, wrapToLink, isLinkToAdminView, height, width, htmlAttributes).Result;
 
             return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
         }
@@ -218,7 +219,6 @@ namespace InvestNetwork.Application.Core
         /// <param name="helper">Объект к которому будет применен данный метод расширения</param>
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="wrapToLink">true для установки ссылки, false в противном случае</param>
-        /// <param name="isLinkToAdminView">true для установки ссылки на администраторское представление, false в противном случае</param>
         /// <param name="height">Высота изображения</param>
         /// <param name="width">Ширина изображения</param>
         /// <param name="htmlAttributes">Объект, который содержит HTML атрибуты для элемента.</param>
@@ -238,7 +238,7 @@ namespace InvestNetwork.Application.Core
         /// <returns>HTML элемент, который ссылается на страницу проекта.</returns>
         public static MvcHtmlString ProjectLink(this HtmlHelper helper, int projectId, bool isLinkToAdminView)
         {
-            TagBuilder builder = GetProjectLinkBuilder(projectId, null, isLinkToAdminView);
+            TagBuilder builder = GetProjectLinkBuilder(projectId, null, isLinkToAdminView).Result;
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.Normal));
         }
@@ -248,10 +248,11 @@ namespace InvestNetwork.Application.Core
         /// <param name="helper">Объект к которому будет применен данный метод расширения.</param>
         /// <param name="htmlAttributes">Объект, который содержит HTML атрибуты для элемента.</param>
         /// <param name="projectId">Идентификатор проекта.</param>
+        /// <param name="isLinkToAdminView">true для установки ссылки на администраторское представление, false в противном случае</param>
         /// <returns>HTML элемент, который ссылается на страницу проекта.</returns>
         public static MvcHtmlString ProjectLink(this HtmlHelper helper, int projectId, bool isLinkToAdminView, object htmlAttributes)
         {
-            TagBuilder builder = GetProjectLinkBuilder(projectId, htmlAttributes, isLinkToAdminView);
+            TagBuilder builder = GetProjectLinkBuilder(projectId, htmlAttributes, isLinkToAdminView).Result;
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.Normal));
         }

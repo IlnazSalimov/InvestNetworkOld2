@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace InvestNetwork.Core
@@ -14,14 +15,19 @@ namespace InvestNetwork.Core
             return this.Entry(entity);
         }
 
-        IDbSet<TEntity> IDataContext.Set<TEntity>()
+        DbSet<TEntity> IDataContext.Set<TEntity>()
         {
             return base.Set<TEntity>();
         }
 
-        int IDataContext.SaveChanges()
+        int SaveChanges()
         {
             return this.SaveChanges();
+        }
+
+        Task<int> SaveChangesAsync()
+        {
+            return this.SaveChangesAsync();
         }
 
         void IDataContext.Dispose()

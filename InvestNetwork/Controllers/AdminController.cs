@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Objects;
+using System.Threading.Tasks;
 
 namespace InvestNetwork.Controllers
 {
@@ -36,6 +38,7 @@ namespace InvestNetwork.Controllers
         /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         public ActionResult Index()
         {
+            ViewBag.Projects = _projectRepository.GetAll().OrderBy(p => p.EndDate).Take(20);
             ViewBag.RecentProjects = _projectRepository.GetAll().OrderByDescending(p => p.CreateDate).Take(RECENT_PROJECT_CNT);
             return View();
         }
@@ -44,9 +47,9 @@ namespace InvestNetwork.Controllers
         /// Метод отвечающий за бизнес логику на странице проверки проекта с заданным идентификатором.</summary>
         /// <param name="Id">Идентификатор проекта</param>
         /// <returns>Экземпляр ViewResult с моделью проекта, который выполняет визуализацию представления.</returns>
-        public ActionResult ReviewProject(int Id)
+        public async Task<ActionResult> ReviewProject(int Id)
         {
-            return View(_projectRepository.GetById(Id));
+            return View(await _projectRepository.GetByIdAsync(Id));
         }
 
 

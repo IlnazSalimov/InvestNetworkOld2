@@ -35,7 +35,7 @@ namespace InvestNetwork.Core
         /// Выполняет отображение исходного объекта в новый объект назначения.</summary>
         /// <param name="source">Объект-источник данных для отображения</param>
         /// <param name="sourceType">Тип объекта-источника(использование)</param>
-        /// <param name="sourceType">Тип объекта-назначения(создание)</param>
+        /// <param name="destinationType">Тип объекта-назначения(создание)</param>
         /// <returns>Отображенный объект назначения</returns>
         public object Map(object source, Type sourceType, Type destinationType)
         {

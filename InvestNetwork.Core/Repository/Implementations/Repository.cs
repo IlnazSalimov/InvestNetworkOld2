@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 
 namespace InvestNetwork.Core
@@ -21,7 +23,7 @@ namespace InvestNetwork.Core
         /// </summary>
         /// <param name="TEntity">Класс, являющийся типом модели, к которому будет запрошен доступ</param>
         /// <returns>Объект IDbSet, представляющий собой набор записей заданного типа</returns>
-        private IDbSet<TEntity> Entities
+        private DbSet<TEntity> Entities
         {
             get { return this.dataContext.Set<TEntity>(); }
         }
@@ -41,7 +43,7 @@ namespace InvestNetwork.Core
         /// <returns>Экземпляр IQueryable, набор записей.</returns>
         public IQueryable<TEntity> GetAll()
         {
-            return Entities.AsQueryable();
+            return Entities;
         }
 
         /// <summary>  
@@ -129,6 +131,43 @@ namespace InvestNetwork.Core
                     }
                 }
             }*/
+        }
+
+        /// <summary>  
+        /// Метод отвечающий за предоставление объекта с заданным идентификатором и типом.</summary>
+        public async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await Entities.FindAsync(id);
+        }
+
+
+        public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Entities.Where(predicate);
+        }
+
+        /// <summary>  
+        /// Метод отвечающий за обновление данного объекта.</summary>
+        public async Task EditAsync(TEntity entity)
+        {
+            dataContext.Entry(entity).State = EntityState.Modified;
+            await dataContext.SaveChangesAsync();
+        }
+
+        /// <summary>  
+        /// Метод отвечающий за вставку данного объекта.</summary>
+        public async Task InsertAsync(TEntity entity)
+        {
+            Entities.Add(entity);
+            await dataContext.SaveChangesAsync();
+        }
+
+        /// <summary>  
+        /// Метод отвечающий за удаление данного объекта.</summary>
+        public async Task DeleteAsync(TEntity entity)
+        {
+            Entities.Remove(entity);
+            await dataContext.SaveChangesAsync();
         }
     }
 }

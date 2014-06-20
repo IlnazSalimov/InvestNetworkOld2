@@ -34,7 +34,7 @@
                         <div class="join_row">
                             <div class="join_label"><strong>@Html.LabelFor(model => model.LinkToImg)</strong></div>
                             <div class="join_element">
-                                <input id="ProjectImg" type="file" name="ProjectImg" />
+                                <input id="LinkToImg" type="file" name="LinkToImg" />
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@
 
 <script>
     (function () {
-        $("#ProjectImg").kendoUpload({ multiple: false });
+        $("#LinkToImg").kendoUpload({ multiple: false });
 
         $("#Description").kendoEditor({
             imageBrowser: {

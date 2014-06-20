@@ -13,8 +13,9 @@ namespace InvestNetwork.Core
     /// </summary>
     public interface IDataContext
     {
-        IDbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
         int SaveChanges();
+        Task<int> SaveChangesAsync();
         void Dispose();
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }

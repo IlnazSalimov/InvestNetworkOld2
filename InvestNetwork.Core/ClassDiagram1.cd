@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="InvestNetwork.Core.App_Start.NinjectWebCommon" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAQACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\NinjectWebCommon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.CommonMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAQAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>AutoMapper\Mapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.CustomHandleError" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>ErrorLogging\CustomHandleError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.CustomWebRequestErrorEvent" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ErrorLogging\CustomWebRequestErrorEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.DirectoryBrowser" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAACAAAggAAAA=</HashCode>
+      <FileName>FileUploader\DirectoryBrowser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.FileBrowserEntry" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>FileUploader\FileBrowserEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.FileUploader" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAiGAAAIAAAAEAAgAgAAAQRAAEAAAEAACQEACA=</HashCode>
+      <FileName>FileUploader\FileUploader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ImageResizer" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>FileUploader\ImageResizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ImageSize" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileUploader\ImageSize.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ThumbnailCreator" Collapsed="true">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAQAAAEAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileUploader\ThumbnailCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ImageResizeModule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAICAAAAAAAJAIAAAAQAAACICABAAAAQ=</HashCode>
+      <FileName>ImageTools\GarageTools.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.CustomAuthentication" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAhAIAAAAAAAkAAAAAAAAAAAAAAAAARACAAAAA=</HashCode>
+      <FileName>InvestContext\CustomAuthentication.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.AuthHttpModule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="14" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAIAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>InvestContext\HttpModules\AuthHttpModule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.InvestContext" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAIAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>InvestContext\InvestContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.UserIndentity" BaseTypeListCollapsed="true">
+    <Position X="11" Y="14" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAIAAAAAACAAAAAQgAAAAAAAAAAACABAAAAA=</HashCode>
+      <FileName>InvestContext\UserIdentity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.UserProvider" BaseTypeListCollapsed="true">
+    <Position X="15" Y="14.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAEAAAAAgAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>InvestContext\UserProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.CityDTO" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABIAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\CityDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.CountryDTO" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\CountryDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectDTO" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwAEAUAAggACAAgABAAAQhBAAAIAAAAAABAGAQEAA=</HashCode>
+      <FileName>Models\DTO\ProjectDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.RegionDTO" Collapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\RegionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ScopeDTO" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\ScopeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UsersInfoDTO" Collapsed="true">
+    <Position X="15.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAABACEAAAIAAAAAQAwAAAAQAAACAAAQAACABAA=</HashCode>
+      <FileName>Models\DTO\UsersInfoDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.BaseEntity&lt;T&gt;" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.InvestNetworkEntities" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAASAgAQJCACAAACAAAwAAEgACAAACAAAAgQAAAQA=</HashCode>
+      <FileName>Models\InvestEntityDataModel.Context.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.City" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABoAAAwAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\City.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Country" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAQAAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Country.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Message" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAIAEgAAAAAQAAAAAAAAAAAAEAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Message.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Payment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAgAAAAAAAGAgABAAAgBAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Payment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.PaymentStatus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAABAgAAAAAAAAAACAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\PaymentStatus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Project" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAA0AEQ0AQhggCIAgABAAwQhBAAAIAAIAAABAGAQEAA=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectComment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAABIAAgAAAABAACAAABAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\ProjectComment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectNew" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAIAACAACBAAAAAAACAAAgAAAAAA=</HashCode>
+      <FileName>Models\ProjectNew.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectNewsComment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAABIEAgAAAAAAAAAAAAAAAAAAAiAACAAAAAAA=</HashCode>
+      <FileName>Models\ProjectNewsComment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectStatus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAgAAAAAAAAAAAAAAAAAAIIAAAAAAAAQA=</HashCode>
+      <FileName>Models\ProjectStatus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Region" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAgAwAAAAAAAAAAAAAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Region.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Role" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Scope" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgEIAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Scope.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.User" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAACAAgIAAEAQAAAAAAAAABAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.UsersInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAQBACEAgAIAAAAAQAwAAAAQAAACAAAQAACABAA=</HashCode>
+      <FileName>Models\UsersInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.LoginUserMetaData" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\MetaData\LoginUserMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectMetaData" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MetaData\ProjectMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectNewMetaData" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MetaData\ProjectNewMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.SignupUserMetaData" Collapsed="true">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAAIAAAAAAAAAAAAAAAAACAAAAAAAgIAA=</HashCode>
+      <FileName>Models\MetaData\SignupUserMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UserMetaData" Collapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgIAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MetaData\UserMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UserSettingsMetaData" Collapsed="true">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgIAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\MetaData\UserSettingsMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UsersInfoMetaData" Collapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAQAACEAAAIAAAAAQAQAAAAQAAACAAAQAACABAA=</HashCode>
+      <FileName>Models\MetaData\UsersInfoMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.MessageSending" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Showcases\Message\MessageSending.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectCommentSending" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Showcases\Project\ProjectCommentSending.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectStart" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAgAAAIAgAAAAAQABAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\Showcases\Project\ProjectStart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectStartingSecondStep" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAABAAAAABAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Showcases\Project\ProjectStartingSecondStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.LoginUser" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Showcases\Users\LoginUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.SignupUser" Collapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAAIAAAAAAAAAAAAAAAAACAAAAAAAgIAA=</HashCode>
+      <FileName>Models\Showcases\Users\SignupUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UserProfile" Collapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Showcases\Users\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.UserSettings" Collapsed="true">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAYAACAAgIAAABQAAAAAAEAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Showcases\Users\UserSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.PartycipationUsersInfo" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAEAAAAACAAAEAAABAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Showcases\UsersInfo\PartycipationUsersInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.CustomDependencyResolver" BaseTypeListCollapsed="true">
+    <Position X="2" Y="15.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>NinjectCustom\CustomDependencyResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.DependencyConfigure" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NinjectCustom\DependencyConfigure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.NinjectWebApiResolver" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAI=</HashCode>
+      <FileName>NinjectCustom\NinjectWebApiResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.NinjectWebApiScope" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAgCAAAEAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>NinjectCustom\NinjectWebApiScope.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.CityRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\CityRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.CountryRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\CountryRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.MessageRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gERAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAIAAAIA=</HashCode>
+      <FileName>Repository\Implementations\MessageRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectCommentRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAABAAAAAAAAAAAAAAEAAAAAAgAIAIAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ProjectCommentRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectNewsCommentsRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIQAAEAAAAAAAAAAgAAAAAAAAAEAAAAAAgAAAIAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ProjectNewsCommentsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectNewsRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAMAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ProjectNewsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAgAAAAEAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ProjectRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ProjectStatusRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAgAAAAAAAEBAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ProjectStatusRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.RegionRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\RegionRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.Repository&lt;TEntity&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="16.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAACAAAAAAAAAAAAAAAAEAAAAAAgEAAIAAAIA=</HashCode>
+      <FileName>Repository\Implementations\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InvestNetwork.Core.RoleRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAgAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\RoleRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.ScopeRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Implementations\ScopeRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.UserRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAGAAAAAAgAQAIAAAIA=</HashCode>
+      <FileName>Repository\Implementations\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.UsersInfoRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEQAAEAAAAAAAAAAEAgAAAQEAAEAAAAACAAAAAAAAIQ=</HashCode>
+      <FileName>Repository\Implementations\UsersInfoRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InvestNetwork.Core.MetaData.PartycipationUsersInfoMetaData" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MetaData\PartycipationUsersInfoMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Core.Partials.PartycipationUsersInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAgAAACAAAEAAABAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Partials\PartycipationUsersInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="InvestNetwork.Core.IMapper" Collapsed="true">
+    <Position X="13.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AutoMapper\IMapper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IAuthentication" Collapsed="true">
+    <Position X="4.25" Y="14" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAQACAAAAA=</HashCode>
+      <FileName>InvestContext\Interfaces\IAuthentication.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IInvestContext" Collapsed="true">
+    <Position X="11.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>InvestContext\Interfaces\IInvestContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IUserProvider" Collapsed="true">
+    <Position X="17" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InvestContext\Interfaces\IUserProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IEntity" Collapsed="true">
+    <Position X="10" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity\IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IDataContext">
+    <Position X="5" Y="15.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IDataContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.ICityRepository" Collapsed="true">
+    <Position X="4.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\ICityRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.ICountryRepository" Collapsed="true">
+    <Position X="6.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\ICountryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IMessageRepository" Collapsed="true">
+    <Position X="15.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IMessageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IProjectCommentRepository" Collapsed="true">
+    <Position X="17" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IProjectCommentRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IProjectNewsCommentsRepository" Collapsed="true">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAgAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IProjectNewsCommentsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IProjectNewsRepository" Collapsed="true">
+    <Position X="4.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IProjectNewsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IProjectRepository" Collapsed="true">
+    <Position X="6.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IProjectRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IProjectStatusRepository" Collapsed="true">
+    <Position X="8.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEBAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IProjectStatusRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IRegionRepository" Collapsed="true">
+    <Position X="10" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IRegionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="11.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IRoleRepository" Collapsed="true">
+    <Position X="13.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IRoleRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IScopeRepository" Collapsed="true">
+    <Position X="15.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IScopeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IUserRepository" Collapsed="true">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAEAAAAAAAAAAAAAAAAAAAAGAAAAAAgAQAAAAAIA=</HashCode>
+      <FileName>Repository\Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InvestNetwork.Core.IUsersInfoRepository" Collapsed="true">
+    <Position X="4.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIQ=</HashCode>
+      <FileName>Repository\Interfaces\IUsersInfoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.Web.IHttpModule">
+    <Position X="10.5" Y="12" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="InvestNetwork.Core.EntryType" Collapsed="true">
+    <Position X="3" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileUploader\EntryType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InvestNetwork.Core.FundingDurationRanges" Collapsed="true">
+    <Position X="4.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MetaData\ProjectMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InvestNetwork.Core.ProjectStatusEnum" Collapsed="true">
+    <Position X="8.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAAAAAAAAAAABAAAAAAAAAAAAwAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Partials\Project.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InvestNetwork.Core.FundingPeriod" Collapsed="true">
+    <Position X="6.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Partials\Project.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

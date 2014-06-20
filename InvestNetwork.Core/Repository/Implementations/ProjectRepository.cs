@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace InvestNetwork.Core
@@ -19,6 +21,7 @@ namespace InvestNetwork.Core
             this.projectStatusRepository = projectStatusRepository;
         }
 
+
         public IQueryable<Project> GetAll()
         {
             IQueryable<Project> projects = projectRepository.GetAll();
@@ -28,8 +31,6 @@ namespace InvestNetwork.Core
                    where p.ProjectStatusID == ps.ProjectStatusID &&
                    ps.StatusCode != (int)ProjectStatusEnum.Uncreated
                    select p;
-
-
         }
 
         public Project GetById(int id)
@@ -64,6 +65,41 @@ namespace InvestNetwork.Core
         public void SaveChanges()
         {
             projectRepository.SaveChanges();
+        }
+
+
+        public async Task<Project> GetByIdAsync(int id)
+        {
+            if (id == 0)
+                return null;
+            return await projectRepository.GetByIdAsync(id);
+        }
+
+        public IQueryable<Project> SearchFor(Expression<Func<Project, bool>> predicate)
+        {
+            return projectRepository.SearchFor(predicate);
+        }
+
+        public async Task InsertAsync(Project model)
+        {
+            if (model == null)
+                throw new ArgumentNullException("project");
+            await projectRepository.InsertAsync(model);
+        }
+
+        public async Task EditAsync(Project model)
+        {
+            if (model == null)
+                throw new ArgumentNullException("project");
+            await projectRepository.EditAsync(model);
+
+        }
+
+        public async Task DeleteAsync(Project model)
+        {
+            if (model == null)
+                throw new ArgumentNullException("project");
+            await projectRepository.DeleteAsync(model);
         }
     }
 }

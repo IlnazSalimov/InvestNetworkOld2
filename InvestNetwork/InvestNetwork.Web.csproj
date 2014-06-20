@@ -67,6 +67,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -673,6 +674,7 @@
     <Content Include="Scripts\fancybox\CHANGELOG.md" />
     <Content Include="Scripts\fancybox\README.md" />
     <Content Include="Scripts\fancybox\sprite.psd" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fancybox\.gitattributes" />
     <Content Include="Scripts\fancybox\demo\1_b.jpg" />
@@ -964,7 +966,9 @@
     <Content Include="Scripts\tabs\tabwidget\tabwidget.js" />
     <Content Include="Scripts\universal\jquery.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1094,6 +1098,7 @@
     <Content Include="Views\Account\SignUp.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Funding\Invest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\project_images\" />

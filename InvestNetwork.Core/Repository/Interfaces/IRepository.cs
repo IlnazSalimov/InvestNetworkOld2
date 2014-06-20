@@ -12,7 +12,7 @@ namespace InvestNetwork.Core
     /// Определяет основные методы доступа к хранилищам
     /// </summary>
     /// <typeparam name="TEntity">Тип репозитория</typeparam>
-    public interface IRepository<TEntity> where TEntity : class, IEntity
+    public interface IRepository<TEntity> where TEntity : class,IEntity
     {
         IQueryable<TEntity> GetAll();
         TEntity GetById(object id);
@@ -20,5 +20,15 @@ namespace InvestNetwork.Core
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void SaveChanges();
+
+        Task<TEntity> GetByIdAsync(int id);
+
+        IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate);
+
+        Task EditAsync(TEntity entity);
+
+        Task InsertAsync(TEntity entity);
+
+        Task DeleteAsync(TEntity entity);
     }
 }

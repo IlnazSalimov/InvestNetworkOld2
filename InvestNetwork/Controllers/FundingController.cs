@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,10 +32,17 @@ namespace InvestNetwork.Controllers
         /// Метод отвечающий за бизнес логику на странице ввода количества инвестиций в проект, с заданным идентификатором.</summary>
         /// <param name="Id">Идентификатор проекта</param>
         /// <returns>Экземпляр ViewResult с моделью проекта, который выполняет визуализацию представления.</returns>
-        public ActionResult DetermineAmount(int Id)
+        public async Task<ActionResult> DetermineAmount(int Id)
         {
-            return View(_projectRepository.GetById(Id));
+            return View(await _projectRepository.GetByIdAsync(Id));
         }
 
+        /// <summary>  
+        /// Метод отвечающий за бизнес логику на странице ввода платежной информации.</summary>
+        /// <returns>Экземпляр ViewResult с моделью проекта, который выполняет визуализацию представления.</returns>
+        public ActionResult Invest()
+        {
+            return View();
+        }
     }
 }

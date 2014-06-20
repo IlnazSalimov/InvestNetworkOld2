@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using InvestNetwork.Application.Core;
+using System.Threading.Tasks;
 
 namespace InvestNetwork.Api
 {
@@ -53,9 +54,9 @@ namespace InvestNetwork.Api
         /// <param name="status">Устанавливаемы статус проекта</param>
         /// <returns>Экземпляр HttpResponseMessage с результатом.</returns>
         [HttpPost]
-        public HttpResponseMessage SetProjectStatus(int id, string status)
+        public async Task<HttpResponseMessage> SetProjectStatus(int id, string status)
         {
-            Project reviewingProject = _projectRepository.GetById(id);
+            Project reviewingProject = await _projectRepository.GetByIdAsync(id);
             if (reviewingProject == null)
             {
                 var message = string.Format("Проект с id = {0} не найден", id);
@@ -75,7 +76,7 @@ namespace InvestNetwork.Api
              
             try
             {
-                _projectRepository.SaveChanges();
+                await _projectRepository.EditAsync(reviewingProject);
             }
             catch (HttpResponseException ex)
             {
@@ -93,9 +94,9 @@ namespace InvestNetwork.Api
         /// <param name="id">Идентификатор проекта</param>
         /// <returns>Экземпляр HttpResponseMessage с результатом.</returns>
         [HttpGet]
-        public HttpResponseMessage Inpect(int id)
+        public async Task<HttpResponseMessage> Inpect(int id)
         {
-            Project reviewingProject = _projectRepository.GetById(id);
+            Project reviewingProject = await _projectRepository.GetByIdAsync(id);
             if (reviewingProject == null)
             {
                 var message = string.Format("Проект с id = {0} не найден", id);
@@ -106,7 +107,7 @@ namespace InvestNetwork.Api
 
             try
             {
-                _projectRepository.SaveChanges();
+                await _projectRepository.EditAsync(reviewingProject);
             }
             catch (HttpResponseException ex)
             {

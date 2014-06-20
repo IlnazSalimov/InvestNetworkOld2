@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="InvestNetwork.Api.AdminController" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAACAAABAAAAgAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Api\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.LocationController" Collapsed="true">
+    <Position X="0.75" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABIAAAACAQAAAAAAAAAQIAAABAAAAA=</HashCode>
+      <FileName>Api\LocationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.MessageController" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAgAAAAAAAAAEAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\MessageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.ProjectCommentController" Collapsed="true">
+    <Position X="2" Y="9.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAADAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\ProjectCommentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.ProjectController">
+    <Position X="3.5" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAAAABAAAAAAAAAAAEAgAAAAAAAAAAIAQA=</HashCode>
+      <FileName>Api\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.ProjectNewsCommentController" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Api\ProjectNewsCommentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.ProjectNewsController" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Api\ProjectNewsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.ScopeController" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Api\ScopeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.UserSettingsController" Collapsed="true">
+    <Position X="1" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAABAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Api\UserSettingsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Api.UsersInfoController" Collapsed="true">
+    <Position X="0.5" Y="10" Width="3" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEABAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Api\UsersInfoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.BundleConfig" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.FilterConfig" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.RouteConfig" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.WebApiConfig" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.MvcApplication" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Startup" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Application.Core.HtmlHelperExtension" Collapsed="true">
+    <Position X="0.75" Y="9.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACgQAAAAAAAAAAEgAAAAAAAgACAAAAQCAAAAAA=</HashCode>
+      <FileName>Application\Core\Extensions\HtmlHelperExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Application.Core.UrlHelperExtension" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Application\Core\Extensions\UrlHelperExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAACAAAAAAAAAIAAAABAAAAAAEQAAAQAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.AdminController" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAUBAAAAAAAAgAAAAAEAAAAIAAA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.FundingController" Collapsed="true">
+    <Position X="1" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\FundingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.HomeController" Collapsed="true">
+    <Position X="2.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.ImageBrowserController" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAgAiGAAAIAAAAEEAiAggAARRAFEAAAEAACYEACg=</HashCode>
+      <FileName>Controllers\ImageBrowserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.PrivateOfficeController">
+    <Position X="8" Y="4.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAgAAAAAAAAAAAAAAAAAEABgAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PrivateOfficeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.ProfileController" Collapsed="true">
+    <Position X="2" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQEAAAAAQAAAAAAAIAAAAA=</HashCode>
+      <FileName>Controllers\ProfileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.ProjectController">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAEAAgAAAAAAAAADgEAAEAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InvestNetwork.Controllers.UserController" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

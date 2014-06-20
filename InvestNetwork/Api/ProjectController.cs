@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.OData;
 using InvestNetwork.Core;
+using System.Net;
 
 namespace InvestNetwork.Api
 {
@@ -38,7 +39,7 @@ namespace InvestNetwork.Api
 
             if (!_projectRepository.GetAll().Any(p => p.ID == key))
             {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
             Project project = _modelMapper.Map(updateDto, typeof(ProjectDTO), typeof(Project)) as Project;
@@ -53,7 +54,7 @@ namespace InvestNetwork.Api
             Project project = _projectRepository.GetById(key);
             if (project == null)
             {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             _projectRepository.Delete(project);
             _projectRepository.SaveChanges();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -81,7 +82,7 @@ namespace InvestNetwork.Controllers
         /// <remarks>Метод используется для обработки POST запросов. Предоставляет доступ только авторизованным пользователям</remarks>
         [Authorize]
         [HttpPost]
-        public ActionResult Start(ProjectStart model)
+        public async Task<ActionResult> Start(ProjectStart model)
         {
             if (ModelState.IsValid)
             {
@@ -102,8 +103,7 @@ namespace InvestNetwork.Controllers
 
                 try
                 {
-                    project.ProjectID = _projectRepository.Insert(project);
-                    _projectRepository.SaveChanges();
+                    await _projectRepository.InsertAsync(project);
 
                     string projectFilesDirectoryName = String.Format("project{0}in{1}", project.ID.ToString(), project.CreateDate.ToString("dd_MM_yyyy"));
                     string userDirRelPath = Path.Combine(ConfigurationManager.AppSettings["FileUploadDirectory"].ToString(), _investContext.CurrentUser.FilesBrowserDirectory);
@@ -111,8 +111,8 @@ namespace InvestNetwork.Controllers
                     
                     Directory.CreateDirectory(Server.MapPath(projectDirRelPath));
                     project.ProjectFilesDirectory = projectFilesDirectoryName;
-                    
-                    _projectRepository.SaveChanges();
+
+                    await _projectRepository.EditAsync(project);
                 }
                 catch (Exception ex) { }
 
@@ -132,11 +132,11 @@ namespace InvestNetwork.Controllers
         /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         /// <remarks>Метод используется для обработки GET запросов. Предоставляет доступ только авторизованным пользователям</remarks>
         [Authorize]
-        public ActionResult CompleteSecondStepOfStart(int Id)
+        public async Task<ActionResult> CompleteSecondStepOfStart(int Id)
         {
             try
             {
-                Project fillingProject = _projectRepository.GetById(Id);
+                Project fillingProject = await _projectRepository.GetByIdAsync(Id);
                 return View(new ProjectStartingSecondStep { 
                     ProjectID = fillingProject.ID,
                     ProjectFilesDirectory = fillingProject.ProjectFilesDirectory 
@@ -150,23 +150,23 @@ namespace InvestNetwork.Controllers
         /// <summary>  
         /// Метод отвечающий за бизнес логику на странице второго шага регестрации проекта.</summary>
         /// <param name="model">Модель проекта, который необходимо сохранить в базе данных.</param>
-        /// <param name="ProjectImg">Объект изображения проекта.</param>
+        /// <param name="LinkToImg">Объект изображения проекта.</param>
         /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         /// <remarks>Метод используется для обработки POST запросов. Предоставляет доступ только авторизованным пользователям</remarks>
         [Authorize]
         [HttpPost]
-        public ActionResult CompleteSecondStepOfStart(ProjectStartingSecondStep model, HttpPostedFileBase ProjectImg)
+        public async Task<ActionResult> CompleteSecondStepOfStart(ProjectStartingSecondStep model, HttpPostedFileBase LinkToImg)
         {
-            if (ModelState.IsValid && (ProjectImg != null && ProjectImg.ContentLength > 0))
+            if (ModelState.IsValid && (LinkToImg != null && LinkToImg.ContentLength > 0))
             {
-                Project fillingProject = _projectRepository.GetById(model.ProjectID);
+                Project fillingProject = await _projectRepository.GetByIdAsync(model.ProjectID);
                 fillingProject.Description = model.Description;
                 fillingProject.Status = ProjectStatusEnum.Active;
                 fillingProject.StartDate = DateTime.Now;
                 fillingProject.EndDate = fillingProject.StartDate.Value.AddDays((int)fillingProject.FundingDuration.Value);
-                fillingProject.LinkToImg = FileUploader.Upload(ProjectImg, fillingProject.ProjectFilesDirectory);
-                
-                _projectRepository.SaveChanges();
+                fillingProject.LinkToImg = FileUploader.Upload(LinkToImg, fillingProject.ProjectFilesDirectory);
+
+                await _projectRepository.EditAsync(fillingProject);
 
                 return RedirectToAction("Discover");
             }
@@ -195,7 +195,7 @@ namespace InvestNetwork.Controllers
         /// Метод отвечающий за бизнес логику на странице просмотра проекта с заданным идентификатором.</summary>
         /// <param name="Id">Идентификатор проекта.</param>
         /// <returns>Экземпляр ViewResult с моделью проекта, который выполняет визуализацию представления.</returns>
-        public ActionResult View(int id)
+        public async Task<ActionResult> View(int id)
         {
             List<ProjectNew> projectNews = _projectNewsRepository.GetAll().Where(p => p.ProjectID == id).OrderByDescending(p => p.NewsDate).ToList();
             foreach (ProjectNew _new in projectNews)
@@ -206,7 +206,7 @@ namespace InvestNetwork.Controllers
             ViewBag.projectComments = _projectCommentRepository.GetByProjectId(id);
             ViewBag.user = _investContext.CurrentUser;
             ViewBag.currDate = DateTime.Now;
-            return View(_projectRepository.GetById(id));
+            return View(await _projectRepository.GetByIdAsync(id));
         }
     }
 }
