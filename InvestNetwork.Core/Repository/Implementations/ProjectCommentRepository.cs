@@ -33,11 +33,11 @@ namespace InvestNetwork.Core
             return projectCommentRepository.GetById(id);
         }
 
-        public IQueryable<ProjectComment> GetByProjectId(int id)
+        public List<ProjectComment> GetByProjectId(int id)
         {
             if (id == 0)
                 return null;
-            var list = projectCommentRepository.GetAll().Where(e => e.ProjectID == id).OrderByDescending(e => e.CommentDate);
+            var list = projectCommentRepository.GetAll().Where(e => e.ProjectID == id).OrderByDescending(e => e.CommentDate).ToList();
             foreach (ProjectComment comment in list)
             {
                 comment.User = userRepository.GetById(comment.FromUserID);
