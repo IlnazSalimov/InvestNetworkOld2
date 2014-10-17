@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,13 +42,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Calabonga.Mvc.Extensions, Version=2.8.4616.24397, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Calabonga.Mvc.Extensions, Version=4.6.5206.39772, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvcTools.Mvc4.0.2.3\lib\net45\Calabonga.Mvc.Extensions.dll</HintPath>
+      <HintPath>..\packages\MvcTools.2.0.6\lib\net40\Calabonga.Mvc.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Calabonga.Xml.Exports, Version=1.1.4426.23975, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Calabonga.Xml.Exports, Version=1.2.4826.31466, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\XmlExport.0.2.1\lib\net40\Calabonga.Xml.Exports.dll</HintPath>
+      <HintPath>..\packages\XmlExport.0.2.4\lib\net40\Calabonga.Xml.Exports.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -675,6 +677,7 @@
     <Content Include="Scripts\fancybox\README.md" />
     <Content Include="Scripts\fancybox\sprite.psd" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="App_Code\Content.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fancybox\.gitattributes" />
     <Content Include="Scripts\fancybox\demo\1_b.jpg" />
@@ -1099,6 +1102,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Funding\Invest.cshtml" />
+    <Content Include="Views\Shared\_LayoutExtended.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\project_images\" />
@@ -1148,6 +1152,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MvcTools</id>
+    <version>2.0.6</version>
+    <title>Extensions for ASP.NET MVC</title>
+    <authors>Calabonga</authors>
+    <owners>Calabonga</owners>
+    <iconUrl>http://www.calabonga.net/content/images/nuget_logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extensions for ASP.NET MVC3 (razor) site project with some htmlhelpers, scripts managment (for exsample, better placement), content extensions. Extension create a new layout file in shared folder _LayoutExtended.cshtml with better placed scripts.</description>
+    <releaseNotes>Update for ASP.NET MVC5. Method EnumDropDownListFor renamed to DropDownEnumListFor because it make ambiguous invocation</releaseNotes>
+    <language>en-US</language>
+    <tags>calabonga extensions ui mvc asp.net checkboxlist word excel export rss scripts cache captcha</tags>
+    <dependencies>
+      <dependency id="XmlExport" version="0.2.1" />
+    </dependencies>
+  </metadata>
+</package>

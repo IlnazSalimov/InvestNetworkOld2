@@ -54,15 +54,24 @@ namespace InvestNetwork.Core
         {
             IProjectRepository projectRepository = DependencyResolver.Current.GetService<IProjectRepository>();
             IProjectStatusRepository projectStatusRepository = DependencyResolver.Current.GetService<IProjectStatusRepository>();
-            List<Project> expiredProjects = (
-                from p in projectRepository.GetAll()
-                join s in projectStatusRepository.GetAll()
-                on p.ProjectStatusID equals s.ProjectStatusID
-                where p.EndDate < DateTime.Now
-                where s.StatusCode == (int)ProjectStatusEnum.Active ||
-                s.StatusCode == (int)ProjectStatusEnum.OnReview
-                select p
-            ).ToList();
+            List<Project> expiredProjects;
+            try
+            {
+                expiredProjects = (
+                    from p in projectRepository.GetAll()
+                    join s in projectStatusRepository.GetAll()
+                    on p.ProjectStatusID equals s.ProjectStatusID
+                    where p.EndDate < DateTime.Now
+                    where s.StatusCode == (int)ProjectStatusEnum.Active ||
+                    s.StatusCode == (int)ProjectStatusEnum.OnReview
+                    select p
+                ).ToList();
+            }
+            catch
+            {
+                expiredProjects = new List<Project>();
+            }
+
             foreach (Project p in expiredProjects)
             {
                 p.Status = ProjectStatusEnum.Inactive;

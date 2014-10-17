@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using InvestNetwork.Core;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 
 namespace InvestNetwork.Core
 {
@@ -56,7 +57,12 @@ namespace InvestNetwork.Core
 
         public User Login(string email, string password)
         {
-            return userRepository.GetAll().FirstOrDefault(p => string.Equals(p.Email, email) && p.Password == password);
+            using (MD5 md5Hash = MD5.Create())
+            {
+                return userRepository.GetAll()
+                    .FirstOrDefault(p => string.Equals(p.Email, email) && 
+                        CryptMD5.VerifyMd5Hash(md5Hash, password, p.Password));
+            }
         }
 
         public void SaveChanges()

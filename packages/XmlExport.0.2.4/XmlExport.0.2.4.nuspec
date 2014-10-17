@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>XmlExport</id>
+    <version>0.2.4</version>
+    <title>Xml Export</title>
+    <authors>Calabonga</authors>
+    <owners>Calabonga</owners>
+    <projectUrl>http://www.calabonga.net/blog/post/70</projectUrl>
+    <iconUrl>http://www.calabonga.net/content/images/nuget_logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Generator for exporting data to Office (Excel and Word)</description>
+    <releaseNotes>New property (parameter) Parent was appended for Style property/</releaseNotes>
+    <language>en-US</language>
+    <tags>xml xmlexport data generator exporting export office ms excel calabonga word</tags>
+  </metadata>
+</package>

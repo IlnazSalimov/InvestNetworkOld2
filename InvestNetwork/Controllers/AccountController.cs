@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Calabonga.Mvc.Extensions;
 using Calabonga.Xml.Exports;
 using InvestNetwork.Core;
+using System.Security.Cryptography;
 
 namespace InvestNetwork.Controllers
 {
@@ -68,7 +69,7 @@ namespace InvestNetwork.Controllers
         /// <param name="model">Модель регистрации</param>
         /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         [HttpPost]
-        //[Captcher(MessageText = "Неверный код с картинки")]
+        [Captcher(MessageText = "Неверный код с картинки")]
         public ActionResult SignUp(SignupUser model)
         {
             if (ModelState.IsValid)
@@ -96,8 +97,12 @@ namespace InvestNetwork.Controllers
                     return View();
                 }
 
-                _userRepository.Insert(new User { FullName = model.FullName, Email = model.Email, Password = model.Password });
-                _userRepository.SaveChanges();
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    string hash_pass = CryptMD5.GetMd5Hash(md5Hash, model.Password);
+                    _userRepository.Insert(new User { FullName = model.FullName, Email = model.Email, Password = hash_pass });
+                    _userRepository.SaveChanges();
+                }
                 
                 LoginUser login = new LoginUser()
                 {
@@ -175,9 +180,9 @@ namespace InvestNetwork.Controllers
         /// Метод отвечающий за вывод captcha.</summary>
         /// </summary>
         /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления</returns>
-        /*public ActionResult Captcha()
+        public ActionResult Captcha()
         {
             return new CaptchaResult();
-        }*/
+        }
     }
 }
